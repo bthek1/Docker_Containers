@@ -1,0 +1,11 @@
+services:
+  ubuntu-desktop:
+    build: .
+    image: ubuntu-desktop:latest
+    container_name: ubuntu-desktop
+    ports:
+      - "5901:5901"  # VNC access
+      - "6080:6080"  # noVNC web access
+    volumes:
+      - ./data:/home/ubuntu
+    restart: unless-stopped
