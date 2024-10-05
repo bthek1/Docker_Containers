@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "Docker_Containers"
+  site-url: "https://bthek1.github.io/Docker_Containers"
+  description: ""
+  repo-branch: main
+  repo-url: "https://github.com/bthek1/Docker_Containers"
