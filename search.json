@@ -1,0 +1,449 @@
+[
+  {
+    "objectID": "kali.html",
+    "href": "kali.html",
+    "title": "Docker Kali",
+    "section": "",
+    "text": "services:\n  kali-linux:\n    image: lscr.io/linuxserver/kali-linux:latest\n    container_name: kali-linux\n    security_opt:\n      - seccomp:unconfined #optional\n    environment:\n      - PUID=1000\n      - PGID=1000\n      - TZ=Etc/UTC\n      - SUBFOLDER=/ #optional\n      - \"TITLE=Kali Linux\" #optional\n    volumes:\n      - /path/to/data:/config\n      - /var/run/docker.sock:/var/run/docker.sock #optional\n    ports:\n      - 3000:3000\n      - 3001:3001\n    devices:\n      - /dev/dri:/dev/dri #optional\n    shm_size: \"1gb\" #optional\n    restart: unless-stopped",
+    "crumbs": [
+      "Blog",
+      "Docker Kali"
+    ]
+  },
+  {
+    "objectID": "kali.html#docker-compose.yml",
+    "href": "kali.html#docker-compose.yml",
+    "title": "Docker Kali",
+    "section": "",
+    "text": "services:\n  kali-linux:\n    image: lscr.io/linuxserver/kali-linux:latest\n    container_name: kali-linux\n    security_opt:\n      - seccomp:unconfined #optional\n    environment:\n      - PUID=1000\n      - PGID=1000\n      - TZ=Etc/UTC\n      - SUBFOLDER=/ #optional\n      - \"TITLE=Kali Linux\" #optional\n    volumes:\n      - /path/to/data:/config\n      - /var/run/docker.sock:/var/run/docker.sock #optional\n    ports:\n      - 3000:3000\n      - 3001:3001\n    devices:\n      - /dev/dri:/dev/dri #optional\n    shm_size: \"1gb\" #optional\n    restart: unless-stopped",
+    "crumbs": [
+      "Blog",
+      "Docker Kali"
+    ]
+  },
+  {
+    "objectID": "kali.html#to-run",
+    "href": "kali.html#to-run",
+    "title": "Docker Kali",
+    "section": "To Run",
+    "text": "To Run\ndocker-compose up -d",
+    "crumbs": [
+      "Blog",
+      "Docker Kali"
+    ]
+  },
+  {
+    "objectID": "kali.html#url",
+    "href": "kali.html#url",
+    "title": "Docker Kali",
+    "section": "URL",
+    "text": "URL\nhttp://localhost:3000/",
+    "crumbs": [
+      "Blog",
+      "Docker Kali"
+    ]
+  },
+  {
+    "objectID": "kali.html#check-permission",
+    "href": "kali.html#check-permission",
+    "title": "Docker Kali",
+    "section": "Check Permission",
+    "text": "Check Permission\nid bthek1",
+    "crumbs": [
+      "Blog",
+      "Docker Kali"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Docker_Containers",
+    "section": "",
+    "text": "This file will become your README and also the index of your documentation.",
+    "crumbs": [
+      "Blog",
+      "Docker_Containers"
+    ]
+  },
+  {
+    "objectID": "index.html#developer-guide",
+    "href": "index.html#developer-guide",
+    "title": "Docker_Containers",
+    "section": "Developer Guide",
+    "text": "Developer Guide\nIf you are new to using nbdev here are some useful pointers to get you started.\n\nInstall Docker_Containers in Development mode\n# make sure Docker_Containers package is installed in development mode\n$ pip install -e .\n\n# make changes under nbs/ directory\n# ...\n\n# compile to have changes apply to Docker_Containers\n$ nbdev_prepare",
+    "crumbs": [
+      "Blog",
+      "Docker_Containers"
+    ]
+  },
+  {
+    "objectID": "index.html#usage",
+    "href": "index.html#usage",
+    "title": "Docker_Containers",
+    "section": "Usage",
+    "text": "Usage\n\nInstallation\nInstall latest from the GitHub repository:\n$ pip install git+https://github.com/bthek1/Docker_Containers.git\nor from conda\n$ conda install -c bthek1 Docker_Containers\nor from pypi\n$ pip install Docker_Containers\n\n\nDocumentation\nDocumentation can be found hosted on this GitHub repository’s pages. Additionally you can find package manager specific guidelines on conda and pypi respectively.",
+    "crumbs": [
+      "Blog",
+      "Docker_Containers"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "Docker_Containers",
+    "section": "How to use",
+    "text": "How to use\nFill me in please! Don’t forget code examples:\n\n1+1\n\n2",
+    "crumbs": [
+      "Blog",
+      "Docker_Containers"
+    ]
+  },
+  {
+    "objectID": "install_docker.html",
+    "href": "install_docker.html",
+    "title": "Install Docker",
+    "section": "",
+    "text": "# Add Docker's official GPG key:\nsudo apt-get update\nsudo apt-get install ca-certificates curl\nsudo install -m 0755 -d /etc/apt/keyrings\nsudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc\nsudo chmod a+r /etc/apt/keyrings/docker.asc\n\n# Add the repository to Apt sources:\necho \\\n  \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\\n  $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable\" | \\\n  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null\nsudo apt-get update\n\n\n\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin\n\n\n\n\nCheck if Docker is installed correctly by running\n\nsudo docker --version\n\n\n\n\nVerify that the Docker Engine installation is successful by running the hello-world image.\n\nsudo docker run hello-world",
+    "crumbs": [
+      "Blog",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "install_docker.html#install-docker-on-linux",
+    "href": "install_docker.html#install-docker-on-linux",
+    "title": "Install Docker",
+    "section": "",
+    "text": "# Add Docker's official GPG key:\nsudo apt-get update\nsudo apt-get install ca-certificates curl\nsudo install -m 0755 -d /etc/apt/keyrings\nsudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc\nsudo chmod a+r /etc/apt/keyrings/docker.asc\n\n# Add the repository to Apt sources:\necho \\\n  \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\\n  $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable\" | \\\n  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null\nsudo apt-get update\n\n\n\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin\n\n\n\n\nCheck if Docker is installed correctly by running\n\nsudo docker --version\n\n\n\n\nVerify that the Docker Engine installation is successful by running the hello-world image.\n\nsudo docker run hello-world",
+    "crumbs": [
+      "Blog",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "install_docker.html#manage-docker-as-a-non-root-user-optional",
+    "href": "install_docker.html#manage-docker-as-a-non-root-user-optional",
+    "title": "Install Docker",
+    "section": "Manage Docker as a Non-Root User (Optional)",
+    "text": "Manage Docker as a Non-Root User (Optional)\n\nCreate the docker group.\nsudo groupadd docker\n\n\nAdd your user to the docker group.\nsudo usermod -aG docker $USER\n\n\nYou can also run the following command to activate the changes to groups:\nnewgrp docker",
+    "crumbs": [
+      "Blog",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "install_docker.html#configure-docker-to-start-on-boot-with-systemd",
+    "href": "install_docker.html#configure-docker-to-start-on-boot-with-systemd",
+    "title": "Install Docker",
+    "section": "Configure Docker to start on boot with systemd",
+    "text": "Configure Docker to start on boot with systemd\nsudo systemctl enable docker.service\nsudo systemctl enable containerd.service\nsudo systemctl enable docker\n\nTo stop this behavior, use disable instead.\nsudo systemctl disable docker.service\nsudo systemctl disable containerd.service",
+    "crumbs": [
+      "Blog",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "install_docker.html#uninstall-docker",
+    "href": "install_docker.html#uninstall-docker",
+    "title": "Install Docker",
+    "section": "Uninstall Docker",
+    "text": "Uninstall Docker\n\nUninstall the Docker Engine, CLI, containerd, and Docker Compose packages:\nsudo apt-get purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras\n\n\nRemoving Images, containers, volumes\n\nImages, containers, volumes or custom configuration files on your host aren’t automatically removed. To delete all images, containers, and volumes:\n\nsudo rm -rf /var/lib/docker\nsudo rm -rf /var/lib/containerd",
+    "crumbs": [
+      "Blog",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "install_docker.html#using-docker-compose",
+    "href": "install_docker.html#using-docker-compose",
+    "title": "Install Docker",
+    "section": "Using Docker Compose",
+    "text": "Using Docker Compose\n\nInstall Docker Compose\nsudo apt-get update\nsudo apt-get install docker-compose-plugin\nor\nsudo curl -L \"https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose\nsudo chmod +x /usr/local/bin/docker-compose\n\n\n\nCreate a docker-compose.yml File\n\nCreate a docker-compose.yml file in your project directory\n\nversion: '3'\nservices:\n  web:\n    image: nginx\n    ports:\n      - \"80:80\"\n  db:\n    image: mysql:5.7\n    environment:\n      MYSQL_ROOT_PASSWORD: example\n\n\nRun Docker Compose\ndocker-compose up",
+    "crumbs": [
+      "Blog",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "install_docker.html#managing-docker-volumes-and-networks",
+    "href": "install_docker.html#managing-docker-volumes-and-networks",
+    "title": "Install Docker",
+    "section": "Managing Docker Volumes and Networks",
+    "text": "Managing Docker Volumes and Networks\n\nVolumes: Used to persist data outside of containers\n\ndocker volume create my_volume\ndocker run -d -v my_volume:/data ubuntu\n\nNetworks: Used to allow containers to communicate\n\ndocker network create my_network\ndocker run -d --network=my_network --name=container1 ubuntu\ndocker run -d --network=my_network --name=container2 ubuntu",
+    "crumbs": [
+      "Blog",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "install_docker.html#clean-up-unused-docker-resources",
+    "href": "install_docker.html#clean-up-unused-docker-resources",
+    "title": "Install Docker",
+    "section": "Clean Up Unused Docker Resources",
+    "text": "Clean Up Unused Docker Resources\n\nOver time, Docker might accumulate unused resources. You can clean them up with\n\ndocker system prune -a",
+    "crumbs": [
+      "Blog",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "jupyterlabs.html",
+    "href": "jupyterlabs.html",
+    "title": "Docker Jupyter Labs",
+    "section": "",
+    "text": "services:\n  jupyterlab:\n    image: jupyter/base-notebook:latest\n    container_name: jupyterlab\n    ports:\n      - \"888:8888\"\n    volumes:\n      - ./notebooks:/home/jovyan/work\n    environment:\n      - JUPYTER_TOKEN=3719  # Set a secure token\n      - NB_UID=1000       # Replace with your UID\n      - NB_GID=1000       # Replace with your GID\n    restart: unless-stopped",
+    "crumbs": [
+      "Blog",
+      "Docker Jupyter Labs"
+    ]
+  },
+  {
+    "objectID": "jupyterlabs.html#docker-compose.yml",
+    "href": "jupyterlabs.html#docker-compose.yml",
+    "title": "Docker Jupyter Labs",
+    "section": "",
+    "text": "services:\n  jupyterlab:\n    image: jupyter/base-notebook:latest\n    container_name: jupyterlab\n    ports:\n      - \"888:8888\"\n    volumes:\n      - ./notebooks:/home/jovyan/work\n    environment:\n      - JUPYTER_TOKEN=3719  # Set a secure token\n      - NB_UID=1000       # Replace with your UID\n      - NB_GID=1000       # Replace with your GID\n    restart: unless-stopped",
+    "crumbs": [
+      "Blog",
+      "Docker Jupyter Labs"
+    ]
+  },
+  {
+    "objectID": "jupyterlabs.html#to-run",
+    "href": "jupyterlabs.html#to-run",
+    "title": "Docker Jupyter Labs",
+    "section": "To Run",
+    "text": "To Run\ndocker-compose up -d",
+    "crumbs": [
+      "Blog",
+      "Docker Jupyter Labs"
+    ]
+  },
+  {
+    "objectID": "jupyterlabs.html#url",
+    "href": "jupyterlabs.html#url",
+    "title": "Docker Jupyter Labs",
+    "section": "URL",
+    "text": "URL\nhttp://localhost:888",
+    "crumbs": [
+      "Blog",
+      "Docker Jupyter Labs"
+    ]
+  },
+  {
+    "objectID": "jupyterlabs.html#check-permission",
+    "href": "jupyterlabs.html#check-permission",
+    "title": "Docker Jupyter Labs",
+    "section": "Check Permission",
+    "text": "Check Permission\nid bthek1",
+    "crumbs": [
+      "Blog",
+      "Docker Jupyter Labs"
+    ]
+  },
+  {
+    "objectID": "firefox.html",
+    "href": "firefox.html",
+    "title": "Docker Firefox",
+    "section": "",
+    "text": "services:\n  firefox:\n    image: lscr.io/linuxserver/firefox:latest\n    container_name: firefox\n    environment:\n      - PUID=1000            # User ID of your host user\n      - PGID=1000            # Group ID of your host user\n      - TZ=Etc/UTC           # Timezone, e.g., \"America/New_York\"\n      - WEBPAGE=https://www.mozilla.org  # Starting URL\n      - VNC_PASSWORD=3719\n      - SUBFOLDER=/firefox  # Access at http://yourdomain.com/firefox\n      - FIREFOX_CLI=https://www.firefox.io/ #optional\n      - MOZ_DISABLE_HW_ACCEL=1   # Disable hardware acceleration\n\n    volumes:\n      - ./config:/config     # Persist configuration data\n    ports:\n      - 3000:3000            # Port mapping\n    shm_size: \"2gb\"          # Shared memory size\n    restart: unless-stopped\n    devices:\n      - /dev/dri:/dev/dri",
+    "crumbs": [
+      "Blog",
+      "Docker Firefox"
+    ]
+  },
+  {
+    "objectID": "firefox.html#docker-compose.yml",
+    "href": "firefox.html#docker-compose.yml",
+    "title": "Docker Firefox",
+    "section": "",
+    "text": "services:\n  firefox:\n    image: lscr.io/linuxserver/firefox:latest\n    container_name: firefox\n    environment:\n      - PUID=1000            # User ID of your host user\n      - PGID=1000            # Group ID of your host user\n      - TZ=Etc/UTC           # Timezone, e.g., \"America/New_York\"\n      - WEBPAGE=https://www.mozilla.org  # Starting URL\n      - VNC_PASSWORD=3719\n      - SUBFOLDER=/firefox  # Access at http://yourdomain.com/firefox\n      - FIREFOX_CLI=https://www.firefox.io/ #optional\n      - MOZ_DISABLE_HW_ACCEL=1   # Disable hardware acceleration\n\n    volumes:\n      - ./config:/config     # Persist configuration data\n    ports:\n      - 3000:3000            # Port mapping\n    shm_size: \"2gb\"          # Shared memory size\n    restart: unless-stopped\n    devices:\n      - /dev/dri:/dev/dri",
+    "crumbs": [
+      "Blog",
+      "Docker Firefox"
+    ]
+  },
+  {
+    "objectID": "firefox.html#to-run",
+    "href": "firefox.html#to-run",
+    "title": "Docker Firefox",
+    "section": "To Run",
+    "text": "To Run\ndocker-compose up -d",
+    "crumbs": [
+      "Blog",
+      "Docker Firefox"
+    ]
+  },
+  {
+    "objectID": "firefox.html#url",
+    "href": "firefox.html#url",
+    "title": "Docker Firefox",
+    "section": "URL",
+    "text": "URL\nhttp://localhost:3000",
+    "crumbs": [
+      "Blog",
+      "Docker Firefox"
+    ]
+  },
+  {
+    "objectID": "JupyterLab_docker/notebooks/Test.html",
+    "href": "JupyterLab_docker/notebooks/Test.html",
+    "title": "Test",
+    "section": "",
+    "text": "1 + 1\n\n2\n\n\n\n2 + 2\n\n4\n\n\n\n3 + 3\n\n6\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "docker_overview.html",
+    "href": "docker_overview.html",
+    "title": "Docker Overview",
+    "section": "",
+    "text": "Docker Jupyter Labs\nDocker Firefox\nportainer\nDocker kali-linux\nDocker ubuntu - not working\nDocker Nginx\nDocker Django\nDocker postgresql",
+    "crumbs": [
+      "Blog",
+      "Docker Overview"
+    ]
+  },
+  {
+    "objectID": "docker_overview.html#ways-of-setting-up-docker-container",
+    "href": "docker_overview.html#ways-of-setting-up-docker-container",
+    "title": "Docker Overview",
+    "section": "",
+    "text": "Docker Jupyter Labs\nDocker Firefox\nportainer\nDocker kali-linux\nDocker ubuntu - not working\nDocker Nginx\nDocker Django\nDocker postgresql",
+    "crumbs": [
+      "Blog",
+      "Docker Overview"
+    ]
+  },
+  {
+    "objectID": "docker.html",
+    "href": "docker.html",
+    "title": "Docker",
+    "section": "",
+    "text": "Dockerfile: Blueprint for building a docker image\ncompose.yml: Builds and runs multiple docker images\nrequirements.txt: pip install libraries list\nImage: Template for running a docker containers\nContainer: Running process",
+    "crumbs": [
+      "Blog",
+      "Docker"
+    ]
+  },
+  {
+    "objectID": "docker.html#definitions",
+    "href": "docker.html#definitions",
+    "title": "Docker",
+    "section": "",
+    "text": "Dockerfile: Blueprint for building a docker image\ncompose.yml: Builds and runs multiple docker images\nrequirements.txt: pip install libraries list\nImage: Template for running a docker containers\nContainer: Running process",
+    "crumbs": [
+      "Blog",
+      "Docker"
+    ]
+  },
+  {
+    "objectID": "docker.html#docker-file",
+    "href": "docker.html#docker-file",
+    "title": "Docker",
+    "section": "Docker File",
+    "text": "Docker File\nFILE _image_ - base image ex. ubuntu, node:12\nWORKDIR _filename_- like when you cd into a directory\nevery step from now is considered layes\nCOPY _filename_ _location_- ex. COPY package*.json ./\nRUN _npm install_ - exec commands - shell form\nCOPY . . - copy all the file in directory into the container\nENV _PORT=8080_ -\nEXPOSE _port_ - exposed port ex. 8080\nCMD [\"npm\" \"start\"] - only one of these in the file. exec form\n\nExample: pytorch image\n# Base image with PyTorch and GPU support\nFROM pytorch/pytorch:latest\n\n# Install additional packages\nRUN apt-get update && \\\n    apt-get install -y sudo software-properties-common\n\nRUN add-apt-repository -y ppa:bashtop-monitor/bashtop && \\\n    add-apt-repository -y ppa:flexiondotorg/nvtop && \\\n    apt-get update\n\nRUN apt-get install -y bashtop nvtop python3-pip \\\n    vim poppler-utils git openssh-client && \\\n    apt-get clean\n\n# Add user 'ben'\nRUN useradd -m -s /bin/bash ben && \\\n    echo \"ben ALL=(ALL) NOPASSWD:ALL\" &gt;&gt; /etc/sudoers\n\n# Set working directory\nWORKDIR /home/ben\n\n# Switch to user ben\nUSER ben\n\n# Add /home/ben/.local/bin to the PATH\nENV PATH=\"/home/ben/.local/bin:${PATH}\"\n\n# Copy requirements file\nCOPY requirements.txt .\n\n# Install required Python packages\nRUN pip install --no-cache-dir -r requirements.txt\n\nRUN git config --global user.email &lt;email&gt; \\\n    && git config --global user.name \"main_docker\"\n\n# COPY /home/ben/'.jupyter' '.jupyter'\nADD /apputils-extension /home/ben/.jupyter/lab/user-settings/@jupyterlab/apputils-extension\n\n# Expose Jupyter notebook port\nEXPOSE 8888\n\n# Command to start JupyterLab with dark theme\nCMD [\"jupyter\", \"lab\", \"--ip=0.0.0.0\", \"--port=8888\", \"--no-browser\", \"--NotebookApp.theme='JupyterLab Dark'\", \"--NotebookApp.token='test'\"]\n\n\n.dockerignore\n\njust like a git ignore file\n\n\n\nBuilding Docker image\ndocker build -t _name_ _path_\nex.\ndocker build -t test:taggedv0.1\n-t : tag\n\n\nView Docker Images\ndocker images\n\n\nDelete Image\ndocker rmi _Image_\n\n\nRunning Docker image as Container\ndocke run -p 5000:8080 _name_\ndocker run -p 8888:8888 -td --gpus=all --name testcontainer test\n\n\nView Dockers Containers Running\ndocker ps -a\n\n\nDeleting Docker Containers\n\ndocker rmi _image_\n\n\nStop Docker Running\ndocker stop $(docker ps -aq)",
+    "crumbs": [
+      "Blog",
+      "Docker"
+    ]
+  },
+  {
+    "objectID": "docker.html#volumes",
+    "href": "docker.html#volumes",
+    "title": "Docker",
+    "section": "Volumes",
+    "text": "Volumes\n\nFolder which multiple containers can access\n\ndocker volume create _name_\n\nUsing volumes in container\ndocker run --mount source=_volumename_, target = _location_",
+    "crumbs": [
+      "Blog",
+      "Docker"
+    ]
+  },
+  {
+    "objectID": "docker.html#docker-debugging",
+    "href": "docker.html#docker-debugging",
+    "title": "Docker",
+    "section": "Docker Debugging",
+    "text": "Docker Debugging\n\nInspect logs in docker desktop\ndocker exec",
+    "crumbs": [
+      "Blog",
+      "Docker"
+    ]
+  },
+  {
+    "objectID": "docker.html#tips",
+    "href": "docker.html#tips",
+    "title": "Docker",
+    "section": "TIPs",
+    "text": "TIPs\n\neach docker should only do one task\nDone through docker-compose.yml",
+    "crumbs": [
+      "Blog",
+      "Docker"
+    ]
+  },
+  {
+    "objectID": "docker.html#compose.yml",
+    "href": "docker.html#compose.yml",
+    "title": "Docker",
+    "section": "Compose.yml",
+    "text": "Compose.yml\n\nExample\n\nthis GPU\n\n\nnvidia Docs\n\nservices:\n  torch:\n    container_name: main_docker\n    \n    build:\n      context: .\n\n    volumes:\n      - /home/ben/BENEDICT_Only:/home/ben/BENEDICT_Only\n      \n    ports:\n      - \"8888:8888\"\n    \n    deploy:\n      resources:\n        reservations:\n          devices:\n            - driver: nvidia\n              count: 1\n              capabilities: [gpu]\nversion: '3'\nservices:\n    web: \n        build: .\n        ports:\n            - \"8080:8080\"\n    db: \n        image: \"mysql\"\n        environment:\n            MYSQL_ROOT_PASSWORD: password\n        volumes:\n            - db-data:/foo\n            \nvolumes:\n    db-data:\n            \n\n\nRunning Docker Compose\ndocker-compose up\n\n\nStopping Docker Compose\ndocker-compose down",
+    "crumbs": [
+      "Blog",
+      "Docker"
+    ]
+  },
+  {
+    "objectID": "docker.html#requirements.txt",
+    "href": "docker.html#requirements.txt",
+    "title": "Docker",
+    "section": "requirements.txt",
+    "text": "requirements.txt\n\nExample\njupyterlab\nfastai\nfastbook\ntimm\npdf2image\npandas\nnbdev\nnbdevAuto",
+    "crumbs": [
+      "Blog",
+      "Docker"
+    ]
+  },
+  {
+    "objectID": "portainer.html",
+    "href": "portainer.html",
+    "title": "Docker Portainer",
+    "section": "",
+    "text": "services:\n  portainer:\n    image: portainer/portainer-ce:latest\n    container_name: portainer\n    restart: unless-stopped\n    ports:\n      - \"800:8000\"   # Port for Portainer Agent (optional)\n      - \"9443:9443\"   # Port for Portainer UI over HTTPS\n    volumes:\n      - /var/run/docker.sock:/var/run/docker.sock   # Access to Docker daemon\n      - ./portainer_data:/data                        # Persistent Portainer data\n\nvolumes:\n  portainer_data:",
+    "crumbs": [
+      "Blog",
+      "Docker Portainer"
+    ]
+  },
+  {
+    "objectID": "portainer.html#docker-compose.yml",
+    "href": "portainer.html#docker-compose.yml",
+    "title": "Docker Portainer",
+    "section": "",
+    "text": "services:\n  portainer:\n    image: portainer/portainer-ce:latest\n    container_name: portainer\n    restart: unless-stopped\n    ports:\n      - \"800:8000\"   # Port for Portainer Agent (optional)\n      - \"9443:9443\"   # Port for Portainer UI over HTTPS\n    volumes:\n      - /var/run/docker.sock:/var/run/docker.sock   # Access to Docker daemon\n      - ./portainer_data:/data                        # Persistent Portainer data\n\nvolumes:\n  portainer_data:",
+    "crumbs": [
+      "Blog",
+      "Docker Portainer"
+    ]
+  },
+  {
+    "objectID": "portainer.html#to-run",
+    "href": "portainer.html#to-run",
+    "title": "Docker Portainer",
+    "section": "To Run",
+    "text": "To Run\ndocker-compose up -d",
+    "crumbs": [
+      "Blog",
+      "Docker Portainer"
+    ]
+  },
+  {
+    "objectID": "portainer.html#url",
+    "href": "portainer.html#url",
+    "title": "Docker Portainer",
+    "section": "URL",
+    "text": "URL\nhttps://localhost:9443/",
+    "crumbs": [
+      "Blog",
+      "Docker Portainer"
+    ]
+  }
+]
