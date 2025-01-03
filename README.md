@@ -5,6 +5,8 @@
 
 ## [Ways of setting up Docker container](https://www.youtube.com/watch?v=RUqGlWr5LBA)
 
+## [Examples of Docker files](https://docs.techdox.nz/grafana/)
+
 - [x] Docker Jupyter Labs
 - [x] Docker Firefox
 - [x] portainer
