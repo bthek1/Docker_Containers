@@ -5,4 +5,4 @@ d = { 'settings': { 'branch': 'main',
                 'doc_host': 'https://bthek1.github.io',
                 'git_url': 'https://github.com/bthek1/Docker_Containers',
                 'lib_path': 'Docker_Containers'},
-  'syms': {'Docker_Containers.core': {'Docker_Containers.core.foo': ('core.html#foo', 'Docker_Containers/core.py')}}}
+  'syms': {}}
