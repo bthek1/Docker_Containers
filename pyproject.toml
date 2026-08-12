@@ -3,7 +3,7 @@ requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "Docker_Containers"
+name = "IaaS_docs"
 dynamic = ["version"]
 description = ""
 readme = "README.md"
@@ -15,16 +15,16 @@ classifiers = ["Natural Language :: English", "Intended Audience :: Developers",
 dependencies = []
 
 [project.urls]
-Repository = "https://github.com/bthek1/Docker_Containers"
-Documentation = "https://bthek1.github.io/Docker_Containers"
+Repository = "https://github.com/bthek1/IaaS_docs"
+Documentation = "https://bthek1.github.io/IaaS_docs"
 
 [project.entry-points.nbdev]
-Docker_Containers = "Docker_Containers._modidx:d"
+IaaS_docs = "IaaS_docs._modidx:d"
 
 [tool.setuptools.dynamic]
-version = {attr = "Docker_Containers.__version__"}
+version = {attr = "IaaS_docs.__version__"}
 
 [tool.setuptools.packages.find]
-include = ["Docker_Containers"]
+include = ["IaaS_docs"]
 
 [tool.nbdev]
