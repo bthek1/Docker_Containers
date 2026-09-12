@@ -1,0 +1,1934 @@
+[
+  {
+    "objectID": "terraform.html",
+    "href": "terraform.html",
+    "title": "Terraform",
+    "section": "",
+    "text": "You define infrastructure in HCL (HashiCorp Configuration Language):\nprovider \"aws\" {\n  region = \"ap-southeast-2\"\n}\n\nresource \"aws_instance\" \"web\" {\n  ami           = \"ami-123456\"\n  instance_type = \"t3.micro\"\n}\nThen run:\nterraform init\nterraform plan\nterraform apply\n\n\n\n\nYou describe what you want, not how to build it.\nTerraform:\n\nBuilds dependency graph\nDetermines order\nCalculates diff\nApplies minimal changes\n\n\n\n\n\nProviders connect Terraform to platforms:\n\n\n\nCategory\nExamples\n\n\n\n\nCloud\nAWS, Azure, GCP, OCI\n\n\nContainers\nKubernetes, Docker\n\n\nSaaS\nGitHub, Cloudflare\n\n\nOn-prem\nVMware, Proxmox\n\n\nDatabases\nPostgreSQL, MongoDB\n\n\n\n👉 Yes — Terraform works with AWS, Oracle Cloud, Proxmox, etc.\n\n\n\n\nTerraform tracks infrastructure in a state file (terraform.tfstate).\nIt stores:\n\nResource IDs\nMetadata\nDependency graph\n\n\n\n\nEnables diffing\nPrevents recreation\nTracks drift\n\n\n\n\nUse remote backend:\n\n\n\nBackend\nUse case\n\n\n\n\nS3 + DynamoDB\nAWS teams\n\n\nAzure Blob\nAzure\n\n\nGCS\nGCP\n\n\nTerraform Cloud\nManaged",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#core-concepts",
+    "href": "terraform.html#core-concepts",
+    "title": "Terraform",
+    "section": "",
+    "text": "You define infrastructure in HCL (HashiCorp Configuration Language):\nprovider \"aws\" {\n  region = \"ap-southeast-2\"\n}\n\nresource \"aws_instance\" \"web\" {\n  ami           = \"ami-123456\"\n  instance_type = \"t3.micro\"\n}\nThen run:\nterraform init\nterraform plan\nterraform apply\n\n\n\n\nYou describe what you want, not how to build it.\nTerraform:\n\nBuilds dependency graph\nDetermines order\nCalculates diff\nApplies minimal changes\n\n\n\n\n\nProviders connect Terraform to platforms:\n\n\n\nCategory\nExamples\n\n\n\n\nCloud\nAWS, Azure, GCP, OCI\n\n\nContainers\nKubernetes, Docker\n\n\nSaaS\nGitHub, Cloudflare\n\n\nOn-prem\nVMware, Proxmox\n\n\nDatabases\nPostgreSQL, MongoDB\n\n\n\n👉 Yes — Terraform works with AWS, Oracle Cloud, Proxmox, etc.\n\n\n\n\nTerraform tracks infrastructure in a state file (terraform.tfstate).\nIt stores:\n\nResource IDs\nMetadata\nDependency graph\n\n\n\n\nEnables diffing\nPrevents recreation\nTracks drift\n\n\n\n\nUse remote backend:\n\n\n\nBackend\nUse case\n\n\n\n\nS3 + DynamoDB\nAWS teams\n\n\nAzure Blob\nAzure\n\n\nGCS\nGCP\n\n\nTerraform Cloud\nManaged",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#terraform-workflow",
+    "href": "terraform.html#terraform-workflow",
+    "title": "Terraform",
+    "section": "🏗 Terraform Workflow",
+    "text": "🏗 Terraform Workflow\nWrite config → Init → Plan → Apply → Destroy\n\nCommands Explained\n\n\n\nCommand\nWhat it does\n\n\n\n\ninit\nDownloads providers\n\n\nplan\nShows execution plan\n\n\napply\nExecutes changes\n\n\ndestroy\nDeletes infrastructure\n\n\nvalidate\nSyntax check\n\n\nfmt\nFormat code\n\n\nstate\nInspect state",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#how-terraform-works-internally",
+    "href": "terraform.html#how-terraform-works-internally",
+    "title": "Terraform",
+    "section": "🔄 How Terraform Works Internally",
+    "text": "🔄 How Terraform Works Internally\n\nParses HCL\nBuilds dependency graph\nCompares desired vs actual state\nCalls provider APIs\nUpdates state",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#modules-reusability",
+    "href": "terraform.html#modules-reusability",
+    "title": "Terraform",
+    "section": "🧩 Modules (Reusability)",
+    "text": "🧩 Modules (Reusability)\nModules are reusable infrastructure packages.\nExample:\nmodule \"vpc\" {\n  source = \"./modules/vpc\"\n  cidr   = \"10.0.0.0/16\"\n}\nYou can publish modules in:\n\nTerraform Registry\nPrivate Git repos",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#variables-outputs",
+    "href": "terraform.html#variables-outputs",
+    "title": "Terraform",
+    "section": "📦 Variables & Outputs",
+    "text": "📦 Variables & Outputs\n\nVariables\nvariable \"instance_type\" {\n  default = \"t3.micro\"\n}\n\n\nOutputs\noutput \"public_ip\" {\n  value = aws_instance.web.public_ip\n}",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#multi-cloud-architecture",
+    "href": "terraform.html#multi-cloud-architecture",
+    "title": "Terraform",
+    "section": "🌍 Multi-Cloud Architecture",
+    "text": "🌍 Multi-Cloud Architecture\nTerraform supports:\n\n\n\nCloud\nSupported\n\n\n\n\nAWS\n✅\n\n\nAzure\n✅\n\n\nGCP\n✅\n\n\nOCI\n✅\n\n\nAlibaba\n✅\n\n\n\nYou can define multiple providers in one config.",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#security-best-practices",
+    "href": "terraform.html#security-best-practices",
+    "title": "Terraform",
+    "section": "🔐 Security Best Practices",
+    "text": "🔐 Security Best Practices\n\nNever commit .tfstate\nUse remote encrypted backend\nUse IAM roles (not static keys)\nUse workspaces for environments\nRestrict state access",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#workspaces-environments",
+    "href": "terraform.html#workspaces-environments",
+    "title": "Terraform",
+    "section": "🧪 Workspaces (Environments)",
+    "text": "🧪 Workspaces (Environments)\nterraform workspace new prod\nterraform workspace select dev\nEnables:\n\ndev\nstaging\nproduction",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#advanced-features",
+    "href": "terraform.html#advanced-features",
+    "title": "Terraform",
+    "section": "⚙ Advanced Features",
+    "text": "⚙ Advanced Features\n\n1️⃣ Data Sources\nRead existing infrastructure:\ndata \"aws_vpc\" \"default\" {\n  default = true\n}\n\n\n\n2️⃣ Lifecycle Rules\nlifecycle {\n  prevent_destroy = true\n}\n\n\n\n3️⃣ Count & For_each\nCreate multiple resources:\nresource \"aws_instance\" \"web\" {\n  count = 3\n}\n\n\n\n4️⃣ Provisioners (Use Carefully)\nRun scripts after creation:\nprovisioner \"remote-exec\" {}\n⚠️ Not recommended for complex config — use Ansible instead.",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#terraform-vs-other-tools",
+    "href": "terraform.html#terraform-vs-other-tools",
+    "title": "Terraform",
+    "section": "🚀 Terraform vs Other Tools",
+    "text": "🚀 Terraform vs Other Tools\n\n\n\n\n\n\n\n\n\nTool\nType\nDeclarative?\nLanguage\n\n\n\n\nTerraform\nIaC\nYes\nHCL\n\n\nPulumi\nIaC\nYes\nPython/TS/Go\n\n\nCloudFormation\nAWS only\nYes\nYAML\n\n\nAnsible\nConfig mgmt\nMostly procedural\nYAML\n\n\nKubernetes\nContainer orchestration\nDeclarative\nYAML",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#terraform-vs-kubernetes",
+    "href": "terraform.html#terraform-vs-kubernetes",
+    "title": "Terraform",
+    "section": "🔄 Terraform vs Kubernetes",
+    "text": "🔄 Terraform vs Kubernetes\n\n\n\nTerraform\nKubernetes\n\n\n\n\nProvisions infrastructure\nOrchestrates containers\n\n\nCreates clusters\nRuns workloads\n\n\nCloud agnostic\nCluster specific\n\n\n\nThey often work together.",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#common-problems",
+    "href": "terraform.html#common-problems",
+    "title": "Terraform",
+    "section": "📉 Common Problems",
+    "text": "📉 Common Problems\n\n1️⃣ State Corruption\nFix with:\nterraform state rm\nterraform import\n\n\n2️⃣ Drift\nUse:\nterraform plan\n\n\n3️⃣ Large Teams\nUse:\n\nRemote backend\nLocking\nCI/CD",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#terraform-cloud-enterprise",
+    "href": "terraform.html#terraform-cloud-enterprise",
+    "title": "Terraform",
+    "section": "🏢 Terraform Cloud & Enterprise",
+    "text": "🏢 Terraform Cloud & Enterprise\nTerraform Cloud provides:\n\nRemote runs\nState storage\nPolicy as code (Sentinel)\nTeam management",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#production-best-practices",
+    "href": "terraform.html#production-best-practices",
+    "title": "Terraform",
+    "section": "🔥 Production Best Practices",
+    "text": "🔥 Production Best Practices\n\nStructure\ninfrastructure/\n  modules/\n  envs/\n    dev/\n    prod/\n\n\nCI/CD\n\nRun plan in PR\nRequire approval\nAuto apply on merge\n\n\n\nVersion Pinning\nrequired_providers {\n  aws = {\n    version = \"~&gt; 5.0\"\n  }\n}",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#when-not-to-use-terraform",
+    "href": "terraform.html#when-not-to-use-terraform",
+    "title": "Terraform",
+    "section": "📊 When NOT To Use Terraform",
+    "text": "📊 When NOT To Use Terraform\n\nShort-lived experiments\nVery dynamic runtime infra\nFine-grained config management",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#advanced-patterns",
+    "href": "terraform.html#advanced-patterns",
+    "title": "Terraform",
+    "section": "🧠 Advanced Patterns",
+    "text": "🧠 Advanced Patterns\n\nBlue/Green infra\nMulti-region failover\nImmutable infrastructure\nPolicy as Code\nGitOps workflows",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#example-aws-vpc-ec2-rds",
+    "href": "terraform.html#example-aws-vpc-ec2-rds",
+    "title": "Terraform",
+    "section": "🏗 Example: AWS VPC + EC2 + RDS",
+    "text": "🏗 Example: AWS VPC + EC2 + RDS\nTerraform can build:\nVPC\n ├─ Public Subnet\n ├─ Private Subnet\n ├─ EC2 Instance\n └─ RDS Database\nAll reproducible with a single apply.",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#future-of-terraform",
+    "href": "terraform.html#future-of-terraform",
+    "title": "Terraform",
+    "section": "🔮 Future of Terraform",
+    "text": "🔮 Future of Terraform\n\nIncreased policy automation\nOpenTofu (community fork)\nMore cloud-neutral infra design\nAI-generated infrastructure configs",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#if-youre-running-proxmox",
+    "href": "terraform.html#if-youre-running-proxmox",
+    "title": "Terraform",
+    "section": "🧭 If You’re Running Proxmox",
+    "text": "🧭 If You’re Running Proxmox\nTerraform has:\n\nProxmox provider\nVMware provider\nKubernetes provider\n\nSo yes — you can manage:\n\nVMs\nContainers\nNetworks",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "terraform.html#summary",
+    "href": "terraform.html#summary",
+    "title": "Terraform",
+    "section": "🏁 Summary",
+    "text": "🏁 Summary\nTerraform is best when:\n\nYou want reproducible infrastructure\nYou manage multiple environments\nYou need version-controlled infra\nYou want multi-cloud flexibility\n\nIt is less suited for:\n\nApp runtime orchestration\nFine config management\nOne-off manual setups\n\n\nIf you want, I can next give:\n\n🔥 Real production folder structure example\n🧠 Terraform for Proxmox homelab guide\n☁ Terraform for AWS startup SaaS\n🔐 Terraform security deep dive\n🚀 Terraform vs Pulumi vs OpenTofu\n\nJust tell me what direction you want.",
+    "crumbs": [
+      "Blog",
+      "Terraform"
+    ]
+  },
+  {
+    "objectID": "pulumi.html",
+    "href": "pulumi.html",
+    "title": "Pulumi",
+    "section": "",
+    "text": "You write a program; running it registers resources with the engine over gRPC. The engine diffs the desired graph against state and calls providers.\nimport pulumi\nimport pulumi_aws as aws\n\nbucket = aws.s3.BucketV2(\"assets\")\naws.s3.BucketVersioningV2(\"assets-versioning\",\n    bucket=bucket.id,\n    versioning_configuration={\"status\": \"Enabled\"})\n\npulumi.export(\"bucket_name\", bucket.id)\nMost providers are auto-bridged from the Terraform providers, so the resource surface and schema are near-identical — including the warts. Error messages sometimes leak HCL-isms.\nStacks are environments (dev, prod), each with its own state and config file (Pulumi.dev.yaml). pulumi config set --secret db:password encrypts per-stack.",
+    "crumbs": [
+      "Blog",
+      "Pulumi"
+    ]
+  },
+  {
+    "objectID": "pulumi.html#core-model",
+    "href": "pulumi.html#core-model",
+    "title": "Pulumi",
+    "section": "",
+    "text": "You write a program; running it registers resources with the engine over gRPC. The engine diffs the desired graph against state and calls providers.\nimport pulumi\nimport pulumi_aws as aws\n\nbucket = aws.s3.BucketV2(\"assets\")\naws.s3.BucketVersioningV2(\"assets-versioning\",\n    bucket=bucket.id,\n    versioning_configuration={\"status\": \"Enabled\"})\n\npulumi.export(\"bucket_name\", bucket.id)\nMost providers are auto-bridged from the Terraform providers, so the resource surface and schema are near-identical — including the warts. Error messages sometimes leak HCL-isms.\nStacks are environments (dev, prod), each with its own state and config file (Pulumi.dev.yaml). pulumi config set --secret db:password encrypts per-stack.",
+    "crumbs": [
+      "Blog",
+      "Pulumi"
+    ]
+  },
+  {
+    "objectID": "pulumi.html#the-one-thing-that-will-trip-you-up-outputt",
+    "href": "pulumi.html#the-one-thing-that-will-trip-you-up-outputt",
+    "title": "Pulumi",
+    "section": "The one thing that will trip you up: Output[T]",
+    "text": "The one thing that will trip you up: Output[T]\nResource properties are Output[T] — a future that also carries dependency edges and a secret flag. You can’t branch on them or f-string them:\n# wrong — Output isn't a str\nurl = f\"https://{bucket.bucket_domain_name}\"\n\n# right\nurl = pulumi.Output.concat(\"https://\", bucket.bucket_domain_name)\n\n# multiple inputs\nconn = pulumi.Output.all(db.address, db.port).apply(\n    lambda a: f\"postgres://{a[0]}:{a[1]}/app\")\nDuring preview, unresolved values are unknown, so anything computed inside .apply() is invisible in the plan. Avoid creating resources inside apply — you lose preview fidelity and dependency clarity. This is the single biggest source of Pulumi frustration.",
+    "crumbs": [
+      "Blog",
+      "Pulumi"
+    ]
+  },
+  {
+    "objectID": "pulumi.html#whats-actually-better-than-terraform",
+    "href": "pulumi.html#whats-actually-better-than-terraform",
+    "title": "Pulumi",
+    "section": "What’s actually better than Terraform",
+    "text": "What’s actually better than Terraform\nAutomation API. Embed the engine as a library and run stacks programmatically — no CLI, no shell-out. This is the killer feature for a SaaS: per-tenant infrastructure provisioned from a Django management command or Celery task, with real error handling.\nfrom pulumi import automation as auto\n\nstack = auto.create_or_select_stack(\n    stack_name=f\"tenant-{clinic_id}\",\n    project_name=\"tenant-infra\",\n    program=lambda: define_tenant(clinic_id))\nup = stack.up(on_output=print)\nTesting. Mock the provider layer and unit-test your infra logic:\npulumi.runtime.set_mocks(MyMocks())\n# then assert on tags, naming, policy compliance\nTerraform has nothing comparable without terraform plan round-trips.\nComponents. ComponentResource subclasses are actual classes — constructors, inheritance, typed args. Substantially better than TF modules for abstraction. You can package a component and consume it from another language.\nLoops/conditionals. No count/for_each gymnastics. Just write the loop.",
+    "crumbs": [
+      "Blog",
+      "Pulumi"
+    ]
+  },
+  {
+    "objectID": "pulumi.html#the-rest-of-the-surface",
+    "href": "pulumi.html#the-rest-of-the-surface",
+    "title": "Pulumi",
+    "section": "The rest of the surface",
+    "text": "The rest of the surface\n\nState backends: Pulumi Cloud is the default, but pulumi login s3://bucket / gs:// / azblob:// / file:// all work. Self-hosting costs you drift detection, RBAC, deployments, and the console.\nESC (Environments, Secrets, Config): hierarchical config with dynamic secrets brokering — pull short-lived AWS creds instead of storing keys. Now supports rotated secrets and versioning. Genuinely good; also usable outside Pulumi as an esc run env-var provider.\nCrossGuard: policy-as-code in Python/TS rather than Rego.\nMigration: pulumi convert --from terraform converts HCL; pulumi import adopts existing resources and generates code. Both get you ~80% there. Pulumi Cloud can also serve as a state backend for Terraform and OpenTofu.\nKubernetes: strongest area — typed manifests, Helm chart consumption, an operator for in-cluster GitOps, await logic that actually waits for rollouts to be healthy.\nAI: Pulumi ships an MCP server, and Neo (agent) has replaced the older Copilot. Latest CLI is 3.255.x.\nService Provider v1.0 (May 2026): manage Pulumi Cloud itself as code — fine-grained RBAC, IDP, and audit-log export as code.",
+    "crumbs": [
+      "Blog",
+      "Pulumi"
+    ]
+  },
+  {
+    "objectID": "pulumi.html#where-it-bites",
+    "href": "pulumi.html#where-it-bites",
+    "title": "Pulumi",
+    "section": "Where it bites",
+    "text": "Where it bites\n\nEcosystem depth. Terraform has ~10× the blog posts, StackOverflow answers, and prior art. LLMs are noticeably better at HCL than at Pulumi Python. You will read provider source more often.\nReal languages, real messes. Nothing stops someone from writing infra with three layers of indirection and a metaclass. HCL’s stupidity is a feature under team pressure.\nRefactoring. Renaming a resource’s logical name replaces it. aliases and opts=ResourceOptions(...) fix it, but it’s easy to nuke a database by renaming a variable.\nPython typing is mediocre. Provider SDKs are generated; type hints exist but Input/Output unions make mypy noisy.\nDebugging. Async graph + generated code = ugly stack traces.\nPricing model. A credit is one resource managed for one hour; Team is $0.0005/credit with 150,000 free credits monthly, covering roughly 200 resources running continuously. Kubernetes blows through this fast — one Helm chart can be 200 resources on its own. Individual is free with unlimited resources but caps deployment minutes and secrets; Enterprise is a sales conversation. Self-hosted state sidesteps the whole thing.",
+    "crumbs": [
+      "Blog",
+      "Pulumi"
+    ]
+  },
+  {
+    "objectID": "pulumi.html#my-recommendation-for-your-situation",
+    "href": "pulumi.html#my-recommendation-for-your-situation",
+    "title": "Pulumi",
+    "section": "My recommendation for your situation",
+    "text": "My recommendation for your situation\nGiven a Django/Postgres/Redis SaaS with Ansible already in play: don’t adopt Pulumi unless you hit one of two triggers.\n\nPer-tenant or dynamic provisioning. If Recovery Metrics ever needs to spin up isolated infra per clinic, Automation API from Django is the best tool that exists for it, full stop. That alone justifies it.\nYou’re moving to Kubernetes. Pulumi’s k8s story beats HCL meaningfully.\n\nIf neither applies, your infra is probably a handful of managed services and VMs, and OpenTofu (or even just Ansible + a small TF root module) is the lower-risk default — better hiring pool, better AI assistance, fewer unknowns. Pulumi’s “you already know Python” pitch is real but oversold: the hard parts of IaC are provider semantics and state management, not syntax, and those are identical either way.\nIf you do try it: start with a self-managed S3 backend, one non-critical stack, Python, and no components until you’ve felt the Output model for a week.",
+    "crumbs": [
+      "Blog",
+      "Pulumi"
+    ]
+  },
+  {
+    "objectID": "Docker/frigate.html",
+    "href": "Docker/frigate.html",
+    "title": "Frigate",
+    "section": "",
+    "text": "Proxmox VE installed\nLXC container (Ubuntu/Debian recommended)\nCoral TPU or other hardware acceleration (optional but recommended)",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Frigate"
+    ]
+  },
+  {
+    "objectID": "Docker/frigate.html#prerequisites",
+    "href": "Docker/frigate.html#prerequisites",
+    "title": "Frigate",
+    "section": "",
+    "text": "Proxmox VE installed\nLXC container (Ubuntu/Debian recommended)\nCoral TPU or other hardware acceleration (optional but recommended)",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Frigate"
+    ]
+  },
+  {
+    "objectID": "Docker/frigate.html#setup-steps",
+    "href": "Docker/frigate.html#setup-steps",
+    "title": "Frigate",
+    "section": "Setup Steps",
+    "text": "Setup Steps\n1. Create LXC Container - Use Debian 12 or Ubuntu 22.04 template - Enable “Nesting” and “FUSE” in container options - Set resources: 2+ cores, 4GB+ RAM - For Coral TPU: make container privileged or pass through USB device\n2. Install Docker in Container\n# Update system\napt update && apt upgrade -y\n\n# Install Docker\ncurl -fsSL https://get.docker.com -o get-docker.sh\nsh get-docker.sh\n3. Create Frigate Directory Structure\nmkdir -p /opt/frigate/config\nmkdir -p /opt/frigate/storage\n4. Create Basic Frigate Config Create /opt/frigate/config/config.yml:\nmqtt:\n  enabled: false\n\ncameras:\n  dummy_camera:\n    enabled: false\n    ffmpeg:\n      inputs:\n        - path: rtsp://your_camera_ip:554/stream\n          roles:\n            - detect\n5. Run Frigate Container\ndocker run -d \\\n  --name frigate \\\n  --restart=unless-stopped \\\n  --mount type=tmpfs,target=/tmp/cache,tmpfs-size=1000000000 \\\n  --device /dev/bus/usb:/dev/bus/usb \\\n  --shm-size=64m \\\n  -v /opt/frigate/storage:/media/frigate \\\n  -v /opt/frigate/config:/config \\\n  -v /etc/localtime:/etc/localtime:ro \\\n  -p 5000:5000 \\\n  -p 8554:8554 \\\n  -p 8555:8555/tcp \\\n  -p 8555:8555/udp \\\n  ghcr.io/blakeblackshear/frigate:stable\n6. Access Frigate - Web UI: http://CONTAINER_IP:5000",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Frigate"
+    ]
+  },
+  {
+    "objectID": "Docker/frigate.html#for-coral-tpu-support",
+    "href": "Docker/frigate.html#for-coral-tpu-support",
+    "title": "Frigate",
+    "section": "For Coral TPU Support",
+    "text": "For Coral TPU Support\nIn Proxmox host, pass USB device to container:\n# Find Coral device\nlsusb\n\n# Edit container config\nnano /etc/pve/lxc/CTID.conf\n\n# Add lines:\nlxc.cgroup2.devices.allow: c 189:* rwm\nlxc.mount.entry: /dev/bus/usb/001 dev/bus/usb/001 none bind,optional,create=dir\nNeed help with a specific step or want to configure cameras?",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Frigate"
+    ]
+  },
+  {
+    "objectID": "Docker/postgresql_docker.html",
+    "href": "Docker/postgresql_docker.html",
+    "title": "Dockerzied PostgreSQL",
+    "section": "",
+    "text": "services:\n  db:\n    image: timescale/timescaledb:latest-pg14\n    container_name: timescale-db\n    environment:\n      POSTGRES_USER: ben\n      POSTGRES_PASSWORD: secret\n      POSTGRES_DB: mydb\n    volumes:\n      - pg_data:/var/lib/postgresql/data\n      - ./init:/docker-entrypoint-initdb.d\n    ports:\n      - \"5432:5432\"\n\n  postgrest:\n    image: postgrest/postgrest:v11.2.0\n    container_name: postgrest-api\n    depends_on:\n      - db\n    ports:\n      - \"3000:3000\"\n    environment:\n      PGRST_DB_URI: postgres://ben:secret@db:5432/mydb\n      PGRST_DB_SCHEMA: api\n      PGRST_DB_ANON_ROLE: web_anon\n      JWT_SECRET: \"229c6891451974edef24ccbcc065d48a4\"\nvolumes:\n  pg_data:",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Dockerzied PostgreSQL"
+    ]
+  },
+  {
+    "objectID": "Docker/postgresql_docker.html#docker-compose.yml",
+    "href": "Docker/postgresql_docker.html#docker-compose.yml",
+    "title": "Dockerzied PostgreSQL",
+    "section": "",
+    "text": "services:\n  db:\n    image: timescale/timescaledb:latest-pg14\n    container_name: timescale-db\n    environment:\n      POSTGRES_USER: ben\n      POSTGRES_PASSWORD: secret\n      POSTGRES_DB: mydb\n    volumes:\n      - pg_data:/var/lib/postgresql/data\n      - ./init:/docker-entrypoint-initdb.d\n    ports:\n      - \"5432:5432\"\n\n  postgrest:\n    image: postgrest/postgrest:v11.2.0\n    container_name: postgrest-api\n    depends_on:\n      - db\n    ports:\n      - \"3000:3000\"\n    environment:\n      PGRST_DB_URI: postgres://ben:secret@db:5432/mydb\n      PGRST_DB_SCHEMA: api\n      PGRST_DB_ANON_ROLE: web_anon\n      JWT_SECRET: \"229c6891451974edef24ccbcc065d48a4\"\nvolumes:\n  pg_data:",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Dockerzied PostgreSQL"
+    ]
+  },
+  {
+    "objectID": "Docker/postgresql_docker.html#makefile",
+    "href": "Docker/postgresql_docker.html#makefile",
+    "title": "Dockerzied PostgreSQL",
+    "section": "Makefile",
+    "text": "Makefile\ndocker_prune:\n    docker system prune -f\n\n\npsql_up:\n    cd PostgreSQL && docker compose up --build -d\n\n\npsql_down:\n    cd PostgreSQL && docker compose down -v",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Dockerzied PostgreSQL"
+    ]
+  },
+  {
+    "objectID": "Docker/kali.html",
+    "href": "Docker/kali.html",
+    "title": "Docker Kali",
+    "section": "",
+    "text": "services:\n  kali-linux:\n    image: lscr.io/linuxserver/kali-linux:latest\n    container_name: kali-linux\n    security_opt:\n      - seccomp:unconfined #optional\n    environment:\n      - PUID=1000\n      - PGID=1000\n      - TZ=Etc/UTC\n      - SUBFOLDER=/ #optional\n      - \"TITLE=Kali Linux\" #optional\n    volumes:\n      - /path/to/data:/config\n      - /var/run/docker.sock:/var/run/docker.sock #optional\n    ports:\n      - 3000:3000\n      - 3001:3001\n    devices:\n      - /dev/dri:/dev/dri #optional\n    shm_size: \"1gb\" #optional\n    restart: unless-stopped",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Kali"
+    ]
+  },
+  {
+    "objectID": "Docker/kali.html#docker-compose.yml",
+    "href": "Docker/kali.html#docker-compose.yml",
+    "title": "Docker Kali",
+    "section": "",
+    "text": "services:\n  kali-linux:\n    image: lscr.io/linuxserver/kali-linux:latest\n    container_name: kali-linux\n    security_opt:\n      - seccomp:unconfined #optional\n    environment:\n      - PUID=1000\n      - PGID=1000\n      - TZ=Etc/UTC\n      - SUBFOLDER=/ #optional\n      - \"TITLE=Kali Linux\" #optional\n    volumes:\n      - /path/to/data:/config\n      - /var/run/docker.sock:/var/run/docker.sock #optional\n    ports:\n      - 3000:3000\n      - 3001:3001\n    devices:\n      - /dev/dri:/dev/dri #optional\n    shm_size: \"1gb\" #optional\n    restart: unless-stopped",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Kali"
+    ]
+  },
+  {
+    "objectID": "Docker/kali.html#to-run",
+    "href": "Docker/kali.html#to-run",
+    "title": "Docker Kali",
+    "section": "To Run",
+    "text": "To Run\ndocker-compose up -d",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Kali"
+    ]
+  },
+  {
+    "objectID": "Docker/kali.html#url",
+    "href": "Docker/kali.html#url",
+    "title": "Docker Kali",
+    "section": "URL",
+    "text": "URL\nhttp://localhost:3000/",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Kali"
+    ]
+  },
+  {
+    "objectID": "Docker/kali.html#check-permission",
+    "href": "Docker/kali.html#check-permission",
+    "title": "Docker Kali",
+    "section": "Check Permission",
+    "text": "Check Permission\nid bthek1",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Kali"
+    ]
+  },
+  {
+    "objectID": "Docker/firefox.html",
+    "href": "Docker/firefox.html",
+    "title": "Docker Firefox",
+    "section": "",
+    "text": "services:\n  firefox:\n    image: lscr.io/linuxserver/firefox:latest\n    container_name: firefox\n    environment:\n      - PUID=1000            # User ID of your host user\n      - PGID=1000            # Group ID of your host user\n      - TZ=Etc/UTC           # Timezone, e.g., \"America/New_York\"\n      - WEBPAGE=https://www.mozilla.org  # Starting URL\n      - VNC_PASSWORD=3719\n      - SUBFOLDER=/firefox  # Access at http://yourdomain.com/firefox\n      - FIREFOX_CLI=https://www.firefox.io/ #optional\n      - MOZ_DISABLE_HW_ACCEL=1   # Disable hardware acceleration\n\n    volumes:\n      - ./config:/config     # Persist configuration data\n    ports:\n      - 3000:3000            # Port mapping\n    shm_size: \"2gb\"          # Shared memory size\n    restart: unless-stopped\n    devices:\n      - /dev/dri:/dev/dri",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Firefox"
+    ]
+  },
+  {
+    "objectID": "Docker/firefox.html#docker-compose.yml",
+    "href": "Docker/firefox.html#docker-compose.yml",
+    "title": "Docker Firefox",
+    "section": "",
+    "text": "services:\n  firefox:\n    image: lscr.io/linuxserver/firefox:latest\n    container_name: firefox\n    environment:\n      - PUID=1000            # User ID of your host user\n      - PGID=1000            # Group ID of your host user\n      - TZ=Etc/UTC           # Timezone, e.g., \"America/New_York\"\n      - WEBPAGE=https://www.mozilla.org  # Starting URL\n      - VNC_PASSWORD=3719\n      - SUBFOLDER=/firefox  # Access at http://yourdomain.com/firefox\n      - FIREFOX_CLI=https://www.firefox.io/ #optional\n      - MOZ_DISABLE_HW_ACCEL=1   # Disable hardware acceleration\n\n    volumes:\n      - ./config:/config     # Persist configuration data\n    ports:\n      - 3000:3000            # Port mapping\n    shm_size: \"2gb\"          # Shared memory size\n    restart: unless-stopped\n    devices:\n      - /dev/dri:/dev/dri",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Firefox"
+    ]
+  },
+  {
+    "objectID": "Docker/firefox.html#to-run",
+    "href": "Docker/firefox.html#to-run",
+    "title": "Docker Firefox",
+    "section": "To Run",
+    "text": "To Run\ndocker-compose up -d",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Firefox"
+    ]
+  },
+  {
+    "objectID": "Docker/firefox.html#url",
+    "href": "Docker/firefox.html#url",
+    "title": "Docker Firefox",
+    "section": "URL",
+    "text": "URL\nhttp://localhost:3000",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Firefox"
+    ]
+  },
+  {
+    "objectID": "Docker/nginx.html",
+    "href": "Docker/nginx.html",
+    "title": "Docker Nginx",
+    "section": "",
+    "text": "Docker Compose = Orchestrator for multiple containers described in docker-compose.yml.\nNginx = HTTP server / reverse proxy that sits at the “front door”:\n\nAccepts requests on ports 80/443\nRoutes them to backend containers (e.g. backend, frontend) over the Docker network\nOptionally serves static files directly (faster, simpler)\n\nInside a Compose project:\n\nEach service is a container (e.g. nginx, backend, db).\nServices can reach each other using the service name as hostname (e.g. backend:8000).\nYou usually only publish Nginx’s port(s) to the host and keep everything else internal.",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Nginx"
+    ]
+  },
+  {
+    "objectID": "Docker/nginx.html#core-mental-model",
+    "href": "Docker/nginx.html#core-mental-model",
+    "title": "Docker Nginx",
+    "section": "",
+    "text": "Docker Compose = Orchestrator for multiple containers described in docker-compose.yml.\nNginx = HTTP server / reverse proxy that sits at the “front door”:\n\nAccepts requests on ports 80/443\nRoutes them to backend containers (e.g. backend, frontend) over the Docker network\nOptionally serves static files directly (faster, simpler)\n\nInside a Compose project:\n\nEach service is a container (e.g. nginx, backend, db).\nServices can reach each other using the service name as hostname (e.g. backend:8000).\nYou usually only publish Nginx’s port(s) to the host and keep everything else internal.",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Nginx"
+    ]
+  },
+  {
+    "objectID": "Docker/nginx.html#minimal-nginx-only-in-docker-compose",
+    "href": "Docker/nginx.html#minimal-nginx-only-in-docker-compose",
+    "title": "Docker Nginx",
+    "section": "2. Minimal: Nginx-only in docker-compose",
+    "text": "2. Minimal: Nginx-only in docker-compose\n\ndocker-compose.yml\nversion: \"3.9\"\n\nservices:\n  nginx:\n    image: nginx:1.27-alpine\n    container_name: my-nginx\n    ports:\n      - \"80:80\"\n    volumes:\n      - ./nginx/conf.d:/etc/nginx/conf.d:ro\n      - ./nginx/html:/usr/share/nginx/html:ro\n    restart: unless-stopped\n\n\nNginx config: nginx/conf.d/default.conf\nserver {\n    listen 80;\n    server_name _;\n\n    # Serve static files from /usr/share/nginx/html\n    root /usr/share/nginx/html;\n    index index.html;\n\n    location / {\n        try_files $uri $uri/ =404;\n    }\n}\n\n\nStatic files\nPut index.html etc here:\n./nginx/html/index.html\n./nginx/html/styles.css\n...\nThen:\ndocker compose up -d\nVisit: http://localhost → served by Nginx inside the container.\nKey points:\n\nports: \"80:80\" → maps host port 80 to Nginx container’s port 80.\n./nginx/conf.d → you control Nginx config from your repo.\n:ro → mount read-only, safer.",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Nginx"
+    ]
+  },
+  {
+    "objectID": "Docker/nginx.html#nginx-as-reverse-proxy-for-an-app-container",
+    "href": "Docker/nginx.html#nginx-as-reverse-proxy-for-an-app-container",
+    "title": "Docker Nginx",
+    "section": "3. Nginx as reverse proxy for an app container",
+    "text": "3. Nginx as reverse proxy for an app container\nThis is the usual pattern in real apps:\n\nbackend container runs app (Django, Node, etc.) on internal port (e.g. 8000).\nnginx receives public traffic and proxies /api (or /) to backend.\n\n\ndocker-compose.yml (backend + nginx)\nversion: \"3.9\"\n\nservices:\n  backend:\n    build: ./backend\n    container_name: my-backend\n    expose:\n      - \"8000\"  # visible only inside the Docker network\n    environment:\n      - PORT=8000\n    restart: unless-stopped\n\n  nginx:\n    image: nginx:1.27-alpine\n    container_name: my-nginx\n    depends_on:\n      - backend\n    ports:\n      - \"80:80\"\n    volumes:\n      - ./nginx/conf.d:/etc/nginx/conf.d:ro\n    restart: unless-stopped\n\nNote: expose doesn’t publish ports to the host, just to other services.\n\n\n\nExample Nginx config: nginx/conf.d/app.conf\nupstream backend_server {\n    # Service name from docker-compose\n    server backend:8000;\n}\n\nserver {\n    listen 80;\n    server_name _;\n\n    # Optional: increase client body size (file uploads)\n    client_max_body_size 20M;\n\n    location / {\n        # Proxy all traffic to backend\n        proxy_pass http://backend_server;\n\n        # Preserve client info & host\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n    }\n}\n\n\nHow requests flow\n\nBrowser → http://localhost (host:80)\nDocker forwards that to nginx:80\nNginx proxies to backend:8000 over internal Docker network\nbackend responds → Nginx → browser",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Nginx"
+    ]
+  },
+  {
+    "objectID": "Docker/nginx.html#serving-static-front-end-proxying-api",
+    "href": "Docker/nginx.html#serving-static-front-end-proxying-api",
+    "title": "Docker Nginx",
+    "section": "4. Serving static front-end + proxying API",
+    "text": "4. Serving static front-end + proxying API\nCommon setup with React/Next/Vue front-end served by Nginx and API proxied.\nExample structure:\n\n/ → serve built React app from Nginx\n/api/ → proxy to backend\n\n\ndocker-compose.yml\nversion: \"3.9\"\n\nservices:\n  backend:\n    build: ./backend\n    expose:\n      - \"8000\"\n    restart: unless-stopped\n\n  nginx:\n    image: nginx:1.27-alpine\n    ports:\n      - \"80:80\"\n    depends_on:\n      - backend\n    volumes:\n      - ./nginx/conf.d:/etc/nginx/conf.d:ro\n      - ./frontend/build:/usr/share/nginx/html:ro\n    restart: unless-stopped\nAssuming ./frontend/build contains your static build (e.g. from npm run build).\n\n\nnginx/conf.d/app.conf\nupstream backend_server {\n    server backend:8000;\n}\n\nserver {\n    listen 80;\n    server_name _;\n\n    root /usr/share/nginx/html;\n    index index.html;\n\n    # Serve static front-end\n    location / {\n        try_files $uri $uri/ /index.html;\n    }\n\n    # Proxy API requests\n    location /api/ {\n        proxy_pass http://backend_server;\n\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n    }\n}\nKey details:\n\ntry_files $uri $uri/ /index.html; → SPA routing (React Router etc.)\nOnly /api/ is sent to backend, everything else is static.",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Nginx"
+    ]
+  },
+  {
+    "objectID": "Docker/nginx.html#adding-https-lets-encrypt-with-compose",
+    "href": "Docker/nginx.html#adding-https-lets-encrypt-with-compose",
+    "title": "Docker Nginx",
+    "section": "5. Adding HTTPS (Let’s Encrypt) with Compose",
+    "text": "5. Adding HTTPS (Let’s Encrypt) with Compose\nThere are two common patterns:\n\nNginx + Certbot companion containers\nUse a “smart” reverse proxy like Traefik / Caddy instead of plain Nginx\n\nFor Nginx-specific:\n\nYou run two containers:\n\nnginx (serves your app)\ncertbot (handles ACME challenges, renewals)\n\nThey share volumes for:\n\nACME challenge directory (e.g. /var/www/certbot)\nCertificate storage (e.g. /etc/letsencrypt)\n\n\nA simplified conceptual Compose layout:\nservices:\n  nginx:\n    image: nginx:1.27-alpine\n    ports:\n      - \"80:80\"\n      - \"443:443\"\n    volumes:\n      - ./nginx/conf.d:/etc/nginx/conf.d:ro\n      - certbot_etc:/etc/letsencrypt\n      - certbot_var:/var/www/certbot\n    depends_on:\n      - backend\n\n  certbot:\n    image: certbot/certbot\n    volumes:\n      - certbot_etc:/etc/letsencrypt\n      - certbot_var:/var/www/certbot\n    # You'd run certbot commands manually or via cron/systemd/script\n\nvolumes:\n  certbot_etc:\n  certbot_var:\nThen your Nginx config has:\n\nAn HTTP server block for ACME challenges (/.well-known/acme-challenge/)\nAn HTTPS server block using the certs in /etc/letsencrypt/live/yourdomain/...\n\nFor a new setup, it’s often easier to use Caddy or Traefik, but if the requirement is “Nginx only”, the above pattern is standard.",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Nginx"
+    ]
+  },
+  {
+    "objectID": "Docker/nginx.html#useful-patterns-with-compose-nginx",
+    "href": "Docker/nginx.html#useful-patterns-with-compose-nginx",
+    "title": "Docker Nginx",
+    "section": "6. Useful patterns with Compose + Nginx",
+    "text": "6. Useful patterns with Compose + Nginx\n\n6.1 Custom networks\nExplicit network, so you can attach other stacks later:\nnetworks:\n  webnet:\n\nservices:\n  backend:\n    ...\n    networks:\n      - webnet\n\n  nginx:\n    ...\n    networks:\n      - webnet\n\n\n6.2 Hot-reloading Nginx config\nIf you mount configs from your host, you can reload without restarting the container:\n# After editing ./nginx/conf.d/app.conf\ndocker exec my-nginx nginx -s reload\nThis is handy in dev so you don’t bounce all services.\n\n\n6.3 Use .env with docker-compose\ndocker-compose reads .env in the same directory. Example:\n.env:\nPROJECT_DOMAIN=example.com\nBACKEND_PORT=8000\ndocker-compose.yml:\nservices:\n  backend:\n    environment:\n      - PORT=${BACKEND_PORT}\nAnd you can even template Nginx configs by generating them from env (e.g. via entrypoint script), but that’s a more advanced pattern.",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Nginx"
+    ]
+  },
+  {
+    "objectID": "Docker/nginx.html#common-pitfalls-how-to-fix-them",
+    "href": "Docker/nginx.html#common-pitfalls-how-to-fix-them",
+    "title": "Docker Nginx",
+    "section": "7. Common pitfalls & how to fix them",
+    "text": "7. Common pitfalls & how to fix them\n\n7.1 Using localhost instead of the service name\nWrong (inside Nginx):\nproxy_pass http://localhost:8000;\nIn containers, localhost is the Nginx container itself, not the backend.\nCorrect:\nproxy_pass http://backend:8000;  # backend = service name in docker-compose\n\n\n\n7.2 502 Bad Gateway from Nginx\nMost common reasons:\n\nBackend isn’t ready / crashed\nService name or port mismatch\nWrong protocol (HTTP vs HTTPS)\n\nCheck:\ndocker compose logs backend\ndocker compose logs nginx\nAnd verify upstream:\nupstream backend_server {\n    server backend:8000;\n}\n\n\n\n7.3 Body size / uploads failing\nIf uploads fail with 413 Request Entity Too Large or randomly:\nserver {\n    client_max_body_size 20M;  # or higher\n    ...\n}\n\n\n\n7.4 WebSockets / SSE\nFor WebSockets, add:\nlocation /ws/ {\n    proxy_pass http://backend_server;\n    proxy_http_version 1.1;\n    proxy_set_header Upgrade $http_upgrade;\n    proxy_set_header Connection \"Upgrade\";\n    proxy_set_header Host $host;\n}\n\n\n\n7.5 Health-checks\nYou can add a simple /health endpoint on your backend and let Compose/your infra check it.\nExample Nginx pass-through:\nlocation /health {\n    proxy_pass http://backend_server/health;\n}",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Nginx"
+    ]
+  },
+  {
+    "objectID": "Docker/jupyterlabs.html",
+    "href": "Docker/jupyterlabs.html",
+    "title": "Docker Jupyter Labs",
+    "section": "",
+    "text": "services:\n  jupyterlab:\n    image: jupyter/base-notebook:latest\n    container_name: jupyterlab\n    ports:\n      - \"888:8888\"\n    volumes:\n      - ./notebooks:/home/jovyan/work\n    environment:\n      - JUPYTER_TOKEN=3719  # Set a secure token\n      - NB_USER=ben\n      - NB_UID=1000       # Replace with your UID\n      - NB_GID=1000       # Replace with your GID\n    restart: unless-stopped",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Jupyter Labs"
+    ]
+  },
+  {
+    "objectID": "Docker/jupyterlabs.html#docker-compose.yml",
+    "href": "Docker/jupyterlabs.html#docker-compose.yml",
+    "title": "Docker Jupyter Labs",
+    "section": "",
+    "text": "services:\n  jupyterlab:\n    image: jupyter/base-notebook:latest\n    container_name: jupyterlab\n    ports:\n      - \"888:8888\"\n    volumes:\n      - ./notebooks:/home/jovyan/work\n    environment:\n      - JUPYTER_TOKEN=3719  # Set a secure token\n      - NB_USER=ben\n      - NB_UID=1000       # Replace with your UID\n      - NB_GID=1000       # Replace with your GID\n    restart: unless-stopped",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Jupyter Labs"
+    ]
+  },
+  {
+    "objectID": "Docker/jupyterlabs.html#to-run",
+    "href": "Docker/jupyterlabs.html#to-run",
+    "title": "Docker Jupyter Labs",
+    "section": "To Run",
+    "text": "To Run\ndocker-compose up -d",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Jupyter Labs"
+    ]
+  },
+  {
+    "objectID": "Docker/jupyterlabs.html#url",
+    "href": "Docker/jupyterlabs.html#url",
+    "title": "Docker Jupyter Labs",
+    "section": "URL",
+    "text": "URL\nhttp://localhost:888",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Jupyter Labs"
+    ]
+  },
+  {
+    "objectID": "Docker/jupyterlabs.html#check-permission",
+    "href": "Docker/jupyterlabs.html#check-permission",
+    "title": "Docker Jupyter Labs",
+    "section": "Check Permission",
+    "text": "Check Permission\nid bthek1",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Jupyter Labs"
+    ]
+  },
+  {
+    "objectID": "Docker/jupyterlabs.html#password-hash",
+    "href": "Docker/jupyterlabs.html#password-hash",
+    "title": "Docker Jupyter Labs",
+    "section": "Password Hash",
+    "text": "Password Hash\npython -c \"from jupyter_server.auth import passwd; print(passwd('1234', 'sha1'))\"",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Jupyter Labs"
+    ]
+  },
+  {
+    "objectID": "lgtm_stack.html",
+    "href": "lgtm_stack.html",
+    "title": "LGTM stack",
+    "section": "",
+    "text": "✅ End-to-End Observability → Tracks logs, metrics, and traces from applications.\n✅ Scalability → Can handle large-scale distributed systems.\n✅ Open-Source and Vendor-Neutral → Works with many cloud and on-prem solutions.\n✅ Seamless Grafana Integration → Unified dashboards for logs, metrics, and traces.",
+    "crumbs": [
+      "Blog",
+      "LGTM stack"
+    ]
+  },
+  {
+    "objectID": "lgtm_stack.html#introduction",
+    "href": "lgtm_stack.html#introduction",
+    "title": "LGTM stack",
+    "section": "",
+    "text": "✅ End-to-End Observability → Tracks logs, metrics, and traces from applications.\n✅ Scalability → Can handle large-scale distributed systems.\n✅ Open-Source and Vendor-Neutral → Works with many cloud and on-prem solutions.\n✅ Seamless Grafana Integration → Unified dashboards for logs, metrics, and traces.",
+    "crumbs": [
+      "Blog",
+      "LGTM stack"
+    ]
+  },
+  {
+    "objectID": "lgtm_stack.html#overview-of-the-otel-lgtm-stack",
+    "href": "lgtm_stack.html#overview-of-the-otel-lgtm-stack",
+    "title": "LGTM stack",
+    "section": "2. Overview of the OTEL + LGTM Stack",
+    "text": "2. Overview of the OTEL + LGTM Stack\n\n\n\n\n\n\n\nComponent\nPurpose\n\n\n\n\nOTEL (OpenTelemetry)\nStandardized tracing, metrics, and logs collection.\n\n\nLoki\nLog aggregation system for storing and querying logs efficiently.\n\n\nGrafana\nVisualization and monitoring dashboards for logs, metrics, and traces.\n\n\nTempo\nDistributed tracing backend for tracking requests across services.\n\n\nMimir\nHigh-performance metrics storage for Prometheus-like queries.",
+    "crumbs": [
+      "Blog",
+      "LGTM stack"
+    ]
+  },
+  {
+    "objectID": "lgtm_stack.html#architecture",
+    "href": "lgtm_stack.html#architecture",
+    "title": "LGTM stack",
+    "section": "3. Architecture",
+    "text": "3. Architecture\n\nHow OTEL + LGTM Works\n+------------------+       +------------------+       +------------------+       +------------------+\n|   Application    | ---&gt;  | OpenTelemetry    | ---&gt;  |   Loki (Logs)    | ---&gt;  | Grafana (UI)    |\n|   (Microservices)|       | Collector        |       |   Tempo (Traces) |       | Dashboards      |\n|                 |       | (Traces, Metrics, Logs) |   |   Mimir (Metrics) |       | Alerts, Queries |\n+------------------+       +------------------+       +------------------+       +------------------+",
+    "crumbs": [
+      "Blog",
+      "LGTM stack"
+    ]
+  },
+  {
+    "objectID": "lgtm_stack.html#setting-up-otel-lgtm-stack",
+    "href": "lgtm_stack.html#setting-up-otel-lgtm-stack",
+    "title": "LGTM stack",
+    "section": "4. Setting Up OTEL + LGTM Stack",
+    "text": "4. Setting Up OTEL + LGTM Stack\n\n4.1 Install Docker and Docker Compose\nEnsure Docker and Docker Compose are installed:\nsudo apt update\nsudo apt install docker docker-compose -y\nVerify installation:\ndocker --version\ndocker-compose --version",
+    "crumbs": [
+      "Blog",
+      "LGTM stack"
+    ]
+  },
+  {
+    "objectID": "lgtm_stack.html#deploy-otel-lgtm-stack-using-docker-compose",
+    "href": "lgtm_stack.html#deploy-otel-lgtm-stack-using-docker-compose",
+    "title": "LGTM stack",
+    "section": "5. Deploy OTEL + LGTM Stack Using Docker Compose",
+    "text": "5. Deploy OTEL + LGTM Stack Using Docker Compose\nCreate a docker-compose.yml file:\nversion: \"3.8\"\n\nservices:\n  otel-collector:\n    image: otel/opentelemetry-collector-contrib:latest\n    container_name: otel-collector\n    volumes:\n      - ./otel-config.yaml:/etc/otel-collector-config.yaml\n    command: [\"--config\", \"/etc/otel-collector-config.yaml\"]\n    ports:\n      - \"4317:4317\"  # gRPC receiver\n      - \"4318:4318\"  # HTTP receiver\n    restart: unless-stopped\n\n  loki:\n    image: grafana/loki:latest\n    container_name: loki\n    ports:\n      - \"3100:3100\"\n    command: -config.file=/etc/loki/local-config.yaml\n\n  promtail:\n    image: grafana/promtail:latest\n    container_name: promtail\n    volumes:\n      - /var/log:/var/log\n      - ./promtail-config.yaml:/etc/promtail/promtail.yaml\n    command: -config.file=/etc/promtail/promtail.yaml\n    depends_on:\n      - loki\n\n  mimir:\n    image: grafana/mimir:latest\n    container_name: mimir\n    ports:\n      - \"9009:9009\"\n\n  tempo:\n    image: grafana/tempo:latest\n    container_name: tempo\n    ports:\n      - \"3200:3200\"\n    command: [ \"-config.file=/etc/tempo.yaml\" ]\n\n  grafana:\n    image: grafana/grafana:latest\n    container_name: grafana\n    ports:\n      - \"3000:3000\"\n    environment:\n      - GF_SECURITY_ADMIN_PASSWORD=admin\n    volumes:\n      - grafana_data:/var/lib/grafana\n    depends_on:\n      - loki\n      - mimir\n      - tempo\n\nvolumes:\n  grafana_data:",
+    "crumbs": [
+      "Blog",
+      "LGTM stack"
+    ]
+  },
+  {
+    "objectID": "lgtm_stack.html#configure-opentelemetry-collector",
+    "href": "lgtm_stack.html#configure-opentelemetry-collector",
+    "title": "LGTM stack",
+    "section": "6. Configure OpenTelemetry Collector",
+    "text": "6. Configure OpenTelemetry Collector\nCreate an otel-config.yaml file:\nreceivers:\n  otlp:\n    protocols:\n      grpc:\n      http:\n\nexporters:\n  loki:\n    endpoint: http://loki:3100/loki/api/v1/push\n  prometheus:\n    endpoint: \"0.0.0.0:9464\"\n  otlp:\n    endpoint: tempo:3200\n    tls:\n      insecure: true\n\nservice:\n  pipelines:\n    traces:\n      receivers: [otlp]\n      exporters: [otlp]\n    metrics:\n      receivers: [otlp]\n      exporters: [prometheus]\n    logs:\n      receivers: [otlp]\n      exporters: [loki]",
+    "crumbs": [
+      "Blog",
+      "LGTM stack"
+    ]
+  },
+  {
+    "objectID": "lgtm_stack.html#configure-promtail-log-collector",
+    "href": "lgtm_stack.html#configure-promtail-log-collector",
+    "title": "LGTM stack",
+    "section": "7. Configure Promtail (Log Collector)",
+    "text": "7. Configure Promtail (Log Collector)\nCreate promtail-config.yaml:\nserver:\n  http_listen_port: 9080\n\npositions:\n  filename: /tmp/positions.yaml\n\nclients:\n  - url: http://loki:3100/loki/api/v1/push\n\nscrape_configs:\n  - job_name: system_logs\n    static_configs:\n      - targets:\n          - localhost\n        labels:\n          job: varlogs\n          __path__: /var/log/*.log",
+    "crumbs": [
+      "Blog",
+      "LGTM stack"
+    ]
+  },
+  {
+    "objectID": "lgtm_stack.html#start-the-stack",
+    "href": "lgtm_stack.html#start-the-stack",
+    "title": "LGTM stack",
+    "section": "8. Start the Stack",
+    "text": "8. Start the Stack\nRun the following command:\ndocker-compose up -d\nVerify running containers:\ndocker ps",
+    "crumbs": [
+      "Blog",
+      "LGTM stack"
+    ]
+  },
+  {
+    "objectID": "lgtm_stack.html#access-grafana-dashboards",
+    "href": "lgtm_stack.html#access-grafana-dashboards",
+    "title": "LGTM stack",
+    "section": "9. Access Grafana Dashboards",
+    "text": "9. Access Grafana Dashboards\n\nOpen Grafana: http://localhost:3000\nLogin: Username: admin, Password: admin\nAdd Data Sources:\n\nLoki → For logs (http://loki:3100)\nPrometheus → For metrics (http://otel-collector:9464)\nTempo → For traces (http://tempo:3200)",
+    "crumbs": [
+      "Blog",
+      "LGTM stack"
+    ]
+  },
+  {
+    "objectID": "lgtm_stack.html#querying-data-in-grafana",
+    "href": "lgtm_stack.html#querying-data-in-grafana",
+    "title": "LGTM stack",
+    "section": "10. Querying Data in Grafana",
+    "text": "10. Querying Data in Grafana\n\nLogs Query (Loki)\n{job=\"varlogs\"}\nFind logs related to a process:\n{job=\"varlogs\"} |= \"error\"\n\n\nMetrics Query (Mimir)\nCPU Usage:\nrate(node_cpu_seconds_total[5m])\n\n\nTraces Query (Tempo)\nTrack requests by service:\ntrace_id=\"12345abcde\"",
+    "crumbs": [
+      "Blog",
+      "LGTM stack"
+    ]
+  },
+  {
+    "objectID": "lgtm_stack.html#example-application-with-opentelemetry",
+    "href": "lgtm_stack.html#example-application-with-opentelemetry",
+    "title": "LGTM stack",
+    "section": "11. Example Application with OpenTelemetry",
+    "text": "11. Example Application with OpenTelemetry\nTo send logs, traces, and metrics from an application, use OpenTelemetry SDK.\n\nInstall OpenTelemetry Python SDK\npip install opentelemetry-sdk opentelemetry-exporter-otlp\n\n\nInstrument an Application\nfrom opentelemetry import trace\nfrom opentelemetry.sdk.trace import TracerProvider\nfrom opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter\nfrom opentelemetry.sdk.trace.export import SimpleSpanProcessor\n\ntrace.set_tracer_provider(TracerProvider())\ntracer = trace.get_tracer_provider().get_tracer(__name__)\n\nexporter = OTLPSpanExporter(endpoint=\"http://localhost:4317\", insecure=True)\ntrace.get_tracer_provider().add_span_processor(SimpleSpanProcessor(exporter))\n\nwith tracer.start_as_current_span(\"example-trace\"):\n    print(\"Tracing this execution.\")\nRun it:\npython app.py",
+    "crumbs": [
+      "Blog",
+      "LGTM stack"
+    ]
+  },
+  {
+    "objectID": "lgtm_stack.html#summary",
+    "href": "lgtm_stack.html#summary",
+    "title": "LGTM stack",
+    "section": "12. Summary",
+    "text": "12. Summary\n\n\n\nComponent\nPurpose\n\n\n\n\nOTEL\nCollects logs, metrics, and traces from applications\n\n\nLoki\nStores logs for efficient querying\n\n\nGrafana\nVisualizes metrics, logs, and traces\n\n\nTempo\nHandles distributed tracing\n\n\nMimir\nStores and queries Prometheus-style metrics\n\n\n\nThis setup provides a complete observability solution for monitoring, logging, and tracing applications with scalability and flexibility.",
+    "crumbs": [
+      "Blog",
+      "LGTM stack"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "IaaS",
+    "section": "",
+    "text": "These are working notes on provisioning infrastructure and running services on it. The focus is practical. Every service page carries a compose file that has actually been run, not a paraphrase of the vendor documentation.\nMost of it is exercised on a self-hosted Proxmox home lab rather than a public cloud, so the IaaS layer here is one you own and operate yourself.",
+    "crumbs": [
+      "Blog",
+      "IaaS"
+    ]
+  },
+  {
+    "objectID": "index.html#the-service-model-stack",
+    "href": "index.html#the-service-model-stack",
+    "title": "IaaS",
+    "section": "The Service Model Stack",
+    "text": "The Service Model Stack\nIaaS is the layer where you are handed compute, storage, and network, and everything above the hypervisor is yours to manage.\n\n\n\n\n\n\n\n\n\nModel\nYou manage\nProvider manages\nExamples\n\n\n\n\nOn-premises\nHardware, virtualization, OS, runtime, application, data\nNothing\nA server you racked yourself\n\n\nIaaS\nOS, runtime, application, data\nHardware, virtualization, network\nEC2, Linode, Proxmox VMs and containers\n\n\nPaaS\nApplication, data\nEverything below the runtime\nHeroku, Fly.io, App Engine\n\n\nSaaS\nData only\nEverything\nGmail, Notion\n\n\n\nSelf-hosting complicates that table in a useful way. Proxmox exposes the same abstraction a cloud IaaS does, an API that turns bare metal into VMs and containers on demand, except you are also the provider. You get the interface without outsourcing the hardware, and you inherit the operations work that a cloud provider would otherwise absorb.",
+    "crumbs": [
+      "Blog",
+      "IaaS"
+    ]
+  },
+  {
+    "objectID": "index.html#where-containers-fit",
+    "href": "index.html#where-containers-fit",
+    "title": "IaaS",
+    "section": "Where Containers Fit",
+    "text": "Where Containers Fit\nContainers are what you run on the IaaS layer, and the single word covers two quite different things. Getting the distinction right is usually what decides which tool a job wants.\n\n\n\n\n\n\n\n\n\n\nVirtual machine\nSystem container (LXC/LXD)\nApplication container (Docker)\n\n\n\n\nHolds\nA full guest OS\nThe userspace of a full distro\nOne process and its dependencies\n\n\nKernel\nIts own\nShared with the host\nShared with the host\n\n\nIsolation\nHardware level, strongest\nNamespaces and cgroups\nNamespaces and cgroups\n\n\nStarts in\nTens of seconds\nSeconds\nMilliseconds\n\n\nTreat it as\nA machine\nA machine\nA process\n\n\nReach for it when\nYou need a different OS or a hard isolation boundary\nYou want a long-lived host to SSH into and configure\nYou are packaging and shipping a single service\n\n\n\nLXC and LXD covers the system container side. Everything else here is Docker.",
+    "crumbs": [
+      "Blog",
+      "IaaS"
+    ]
+  },
+  {
+    "objectID": "index.html#contents",
+    "href": "index.html#contents",
+    "title": "IaaS",
+    "section": "Contents",
+    "text": "Contents\nProvisioning the infrastructure\n\n\n\nPage\nCovers\n\n\n\n\nTerraform\nDeclarative IaC in HCL: providers, resources, state, and the init/plan/apply workflow, plus what the Proxmox provider does with it\n\n\nAnsible\nAgentless configuration management over SSH: inventory, playbooks, roles, variables, idempotency, and where it beats or loses to Terraform\n\n\nPulumi\nTerraform’s model driven from a real programming language, the Output[T] trap that catches everyone, and when the tradeoff is worth it\n\n\n\nFoundations\n\n\n\nPage\nCovers\n\n\n\n\nDocker Overview\nImages, containers, and volumes, plus how a Dockerfile is layered instruction by instruction, with a CUDA PyTorch image as the worked example\n\n\nInstall Docker\nAdding Docker’s apt repository on Linux, installing the engine, verifying it, and running it as a non-root user\n\n\nLXC and LXD\nSystem containers: how they differ from Docker, lxd init explained option by option, then profiles, storage pools, networks, and the lifecycle commands\n\n\n\nOrchestration\n\n\n\nPage\nCovers\n\n\n\n\nKubernetes Overview\nThe reconcile loop, cluster components, the objects you actually write, probes and resource limits, the three networking layers, and when a single host means you should not use any of it\n\n\n\nServices\n\n\n\nPage\nCovers\n\n\n\n\nPostgreSQL\nA docker run quick start through to a compose file with a persistent volume, plus connecting from another container, tuning, backups, and the usual traps\n\n\nDockerized PostgreSQL\nThe same database wrapped in a Makefile for the day-to-day operations\n\n\nNginx\nNginx on its own, then as a reverse proxy in front of an app container, then serving a static front end beside a proxied API\n\n\nJupyterLab\nCompose file, volume permissions, and generating the password hash\n\n\nInfluxDB\nTime series database whose entire initial setup is driven from environment variables\n\n\nPortainer\nWeb UI for managing the containers already running on a host\n\n\nFrigate\nNVR with object detection, running inside a Proxmox LXC, including Coral TPU passthrough\n\n\nKali Linux\nA full Kali desktop reached through the browser\n\n\nFirefox\nContainerized browser served over VNC, mounted at a subfolder behind a reverse proxy",
+    "crumbs": [
+      "Blog",
+      "IaaS"
+    ]
+  },
+  {
+    "objectID": "index.html#the-pattern-every-service-page-follows",
+    "href": "index.html#the-pattern-every-service-page-follows",
+    "title": "IaaS",
+    "section": "The Pattern Every Service Page Follows",
+    "text": "The Pattern Every Service Page Follows\nThe service pages are deliberately uniform: a docker-compose.yml, the command that brings it up, and the URL or port it lands on.\ndocker compose up --build -d\nRead the compose file before you run it. These examples carry placeholder values you are expected to change, including bind mounts pointing at /path/to/data, PUID and PGID fixed at 1000, and default credentials such as the InfluxDB admin password and the Firefox VNC password. They are fine on a private LAN and unsafe anywhere else.\nSeveral pages also mount /var/run/docker.sock into the container. That grants the container root on the host, so treat it as a deliberate choice rather than boilerplate to copy.",
+    "crumbs": [
+      "Blog",
+      "IaaS"
+    ]
+  },
+  {
+    "objectID": "index.html#where-this-runs",
+    "href": "index.html#where-this-runs",
+    "title": "IaaS",
+    "section": "Where This Runs",
+    "text": "Where This Runs\nThe host for most of these notes is a Proxmox home lab, which puts the IaaS layer, the containers, and the services on the same hardware.\n\nSoftware Tools covers Proxmox itself, storage, and the surrounding Linux tooling.\nHardware Tools covers the machines underneath.\nBack End covers the applications that get deployed into these containers.\nThe blog has the narrative version of the same home lab build.",
+    "crumbs": [
+      "Blog",
+      "IaaS"
+    ]
+  },
+  {
+    "objectID": "index.html#not-covered-yet",
+    "href": "index.html#not-covered-yet",
+    "title": "IaaS",
+    "section": "Not Covered Yet",
+    "text": "Not Covered Yet\nStated plainly, so the gaps are not mistaken for oversights:\n\nStanding up a Kubernetes cluster. The Kubernetes page covers the model and the manifests, not the install. No k3s or kubeadm walkthrough, and nothing on RBAC, storage classes, or autoscaling.\nThe lab’s own IaC. The Terraform and Ansible pages are general. The code that actually provisions this home lab lives in the infra/ directory of the parent Knowledge repo.\nPublic cloud IaaS. No EC2, GCE, or equivalent.\nRegistries and CI. Building, tagging, and pushing images to a registry.\n\nThe two PostgreSQL pages also overlap and are worth merging.",
+    "crumbs": [
+      "Blog",
+      "IaaS"
+    ]
+  },
+  {
+    "objectID": "k6.html",
+    "href": "k6.html",
+    "title": "K6",
+    "section": "",
+    "text": "// 1. init — runs once per VU, on every VU. No HTTP allowed here.\nimport http from 'k6/http';\nconst payload = JSON.parse(open('./data.json'));\n\nexport const options = { /* 2. config, read once from the first init */ };\n\nexport function setup() {\n  // 3. runs ONCE for the whole test. Return value must be JSON-serialisable.\n  const res = http.post(`${BASE}/api/auth/token/`, creds);\n  return { token: res.json('access') };\n}\n\nexport default function (data) {\n  // 4. the VU loop. Runs over and over, per VU, for the test duration.\n  http.get(`${BASE}/api/patients/`, { headers: { Authorization: `Bearer ${data.token}` } });\n}\n\nexport function teardown(data) { /* 5. once, at the end */ }\nInit code runs once per VU, not once per test. 1000 VUs × a 50MB open() = 50GB. That’s the single most common way people OOM their load generator. Use SharedArray:\nimport { SharedArray } from 'k6/data';\nconst patients = new SharedArray('patients', () =&gt; JSON.parse(open('./patients.json')));\nEach VU is a separate JS runtime with its own globals. No shared mutable state between VUs — coordinate via setup()’s return value or an external service.",
+    "crumbs": [
+      "Blog",
+      "K6"
+    ]
+  },
+  {
+    "objectID": "k6.html#script-lifecycle-the-thing-to-internalise-first",
+    "href": "k6.html#script-lifecycle-the-thing-to-internalise-first",
+    "title": "K6",
+    "section": "",
+    "text": "// 1. init — runs once per VU, on every VU. No HTTP allowed here.\nimport http from 'k6/http';\nconst payload = JSON.parse(open('./data.json'));\n\nexport const options = { /* 2. config, read once from the first init */ };\n\nexport function setup() {\n  // 3. runs ONCE for the whole test. Return value must be JSON-serialisable.\n  const res = http.post(`${BASE}/api/auth/token/`, creds);\n  return { token: res.json('access') };\n}\n\nexport default function (data) {\n  // 4. the VU loop. Runs over and over, per VU, for the test duration.\n  http.get(`${BASE}/api/patients/`, { headers: { Authorization: `Bearer ${data.token}` } });\n}\n\nexport function teardown(data) { /* 5. once, at the end */ }\nInit code runs once per VU, not once per test. 1000 VUs × a 50MB open() = 50GB. That’s the single most common way people OOM their load generator. Use SharedArray:\nimport { SharedArray } from 'k6/data';\nconst patients = new SharedArray('patients', () =&gt; JSON.parse(open('./patients.json')));\nEach VU is a separate JS runtime with its own globals. No shared mutable state between VUs — coordinate via setup()’s return value or an external service.",
+    "crumbs": [
+      "Blog",
+      "K6"
+    ]
+  },
+  {
+    "objectID": "k6.html#executors",
+    "href": "k6.html#executors",
+    "title": "K6",
+    "section": "Executors",
+    "text": "Executors\nThe most important configuration decision in k6.\n\n\n\n\n\n\n\n\nExecutor\nControls\nUse for\n\n\n\n\nshared-iterations\nN iterations split across VUs\nFixed work, e.g. process 10k records\n\n\nper-vu-iterations\nN iterations each\nDeterministic per-user journeys\n\n\nconstant-vus\nFixed concurrency\nSimulating N connected clients\n\n\nramping-vus\nVU count over stages\nLegacy; mostly the wrong choice\n\n\nconstant-arrival-rate\nFixed req/s\nLoad tests against an SLO\n\n\nramping-arrival-rate\nreq/s over stages\nStress tests, finding the knee\n\n\nexternally-controlled\nLive via REST API\nManual exploration\n\n\n\nUse arrival-rate executors by default. VU-based executors reduce offered load when your server slows down, which hides the failure mode you’re testing for (coordinated omission). Arrival-rate keeps the pressure on and reports dropped_iterations when it can’t keep up — that metric is your signal that maxVUs was too low.\nexport const options = {\n  scenarios: {\n    api: {\n      executor: 'ramping-arrival-rate',\n      startRate: 10, timeUnit: '1s',\n      preAllocatedVUs: 100, maxVUs: 2000,\n      stages: [{ target: 500, duration: '10m' }],\n    },\n  },\n};\nScenarios can run in parallel, use different exec functions, and be offset with startTime.",
+    "crumbs": [
+      "Blog",
+      "K6"
+    ]
+  },
+  {
+    "objectID": "k6.html#metrics",
+    "href": "k6.html#metrics",
+    "title": "K6",
+    "section": "Metrics",
+    "text": "Metrics\nFour types: Counter, Gauge, Rate, Trend. Everything built-in is one of these.\nKey built-ins: - http_req_duration = sending + waiting + receiving. Excludes DNS/TCP/TLS. - http_req_waiting — TTFB. Usually the number that reflects server work. - http_req_blocked — includes connection-pool wait and DNS. High values here often mean your generator is the bottleneck. - iteration_duration, dropped_iterations, vus, vus_max, data_sent/data_received, checks\nCustom metrics:\nimport { Trend, Counter } from 'k6/metrics';\nconst dbHeavyLatency = new Trend('db_heavy_latency', true);\nconst authFailures = new Counter('auth_failures');",
+    "crumbs": [
+      "Blog",
+      "K6"
+    ]
+  },
+  {
+    "objectID": "k6.html#checks-vs-thresholds",
+    "href": "k6.html#checks-vs-thresholds",
+    "title": "K6",
+    "section": "Checks vs thresholds",
+    "text": "Checks vs thresholds\nChecks are assertions that record a pass rate but never fail the test. Thresholds are the pass/fail criteria — they set the exit code, which is what CI cares about.\nthresholds: {\n  'http_req_failed': ['rate&lt;0.01'],\n  'http_req_duration{endpoint:submit}': ['p(95)&lt;500', 'p(99)&lt;1200'],\n  'checks{type:critical}': ['rate&gt;0.99'],\n  'http_req_duration': [{ threshold: 'p(99)&lt;2000', abortOnFail: true, delayAbortEval: '1m' }],\n}\nabortOnFail stops the run early once the system is clearly broken — saves you 20 minutes of hammering a dead service.",
+    "crumbs": [
+      "Blog",
+      "K6"
+    ]
+  },
+  {
+    "objectID": "k6.html#tagging-and-the-url-cardinality-trap",
+    "href": "k6.html#tagging-and-the-url-cardinality-trap",
+    "title": "K6",
+    "section": "Tagging — and the URL cardinality trap",
+    "text": "Tagging — and the URL cardinality trap\nDynamic URLs create one metric series per URL and blow up your output. Always name them:\nhttp.get(`${BASE}/api/patients/${id}/`, {\n  tags: { name: '/api/patients/:id', endpoint: 'patient_detail' },\n});\ngroup() adds a group tag and nests results. Note that group does not create a transaction boundary — it’s labelling, not timing scope, unless you use the group duration metric.",
+    "crumbs": [
+      "Blog",
+      "K6"
+    ]
+  },
+  {
+    "objectID": "k6.html#http-specifics",
+    "href": "k6.html#http-specifics",
+    "title": "K6",
+    "section": "HTTP specifics",
+    "text": "HTTP specifics\n// Parallel requests within one iteration\nconst responses = http.batch([\n  ['GET', `${BASE}/api/patients/`, null, params],\n  ['GET', `${BASE}/api/questionnaires/`, null, params],\n]);\n\n// Async, when you need Promise semantics\nconst res = await http.asyncRequest('GET', url, null, params);\nConnection reuse, cookie jars, and redirect following are on by default. http.get(url, { responseType: 'none' }) or the global discardResponseBodies: true cuts memory dramatically when you don’t inspect bodies.",
+    "crumbs": [
+      "Blog",
+      "K6"
+    ]
+  },
+  {
+    "objectID": "k6.html#beyond-http",
+    "href": "k6.html#beyond-http",
+    "title": "K6",
+    "section": "Beyond HTTP",
+    "text": "Beyond HTTP\n\nk6/browser — Playwright-like async API driving real Chromium. Use it sparingly: browser VUs cost ~100× a protocol VU. The correct pattern is a mostly-protocol test with one small browser scenario to capture Core Web Vitals. Recent versions can also attach to an existing Chromium over CDP, mirroring Playwright’s browserType.connect.\nk6/net/grpc — unary and streaming, with .load() for protos.\nk6/experimental/websockets — the standard-ish WebSocket API.\nxk6 extensions — SQL, Kafka, MQTT, Redis, AMQP, and xk6-disruptor for fault injection. Built by compiling a custom binary: xk6 build --with github.com/grafana/xk6-sql.",
+    "crumbs": [
+      "Blog",
+      "K6"
+    ]
+  },
+  {
+    "objectID": "k6.html#outputs-and-distributed-runs",
+    "href": "k6.html#outputs-and-distributed-runs",
+    "title": "K6",
+    "section": "Outputs and distributed runs",
+    "text": "Outputs and distributed runs\nk6 run script.js --out experimental-prometheus-rw   # → Prometheus/Grafana\nk6 run script.js --out json=results.json\nk6 run script.js --out csv=results.csv\nSet K6_PROMETHEUS_RW_TREND_STATS=p(95),p(99),max or you get useless trend aggregation.\nFor load beyond one machine: k6-operator on Kubernetes (a TestRun CRD that shards a script across N pods), or Grafana Cloud k6. Note that percentiles do not aggregate correctly across shards unless the backend supports it — sum counters, don’t average p95s.",
+    "crumbs": [
+      "Blog",
+      "K6"
+    ]
+  },
+  {
+    "objectID": "k6.html#typescript-and-modules",
+    "href": "k6.html#typescript-and-modules",
+    "title": "K6",
+    "section": "TypeScript and modules",
+    "text": "TypeScript and modules\nModern k6 runs ES2015+ natively via Sobek and strips TypeScript types directly — no Babel, no build step for plain TS. You only need a bundler (esbuild/webpack) if you import npm packages, since there’s no Node API surface: no fs, no crypto module, no Buffer, no process. Use k6/crypto, k6/encoding, open(), and __ENV.\nimport { Faker } from 'k6/x/faker' style imports only work with a custom binary.",
+    "crumbs": [
+      "Blog",
+      "K6"
+    ]
+  },
+  {
+    "objectID": "k6.html#cli-worth-knowing",
+    "href": "k6.html#cli-worth-knowing",
+    "title": "K6",
+    "section": "CLI worth knowing",
+    "text": "CLI worth knowing\nk6 new                        # scaffold a script\nk6 run --vus 10 --duration 30s script.js\nk6 run --http-debug=full      # dump requests/responses\nk6 inspect script.js          # resolved options, no execution\nk6 archive script.js          # bundle script + data into .tar for CI/cloud\nk6 cloud run --local-execution # run locally, stream results to Grafana Cloud\nAlso k6 Studio — a desktop app that records a browser session and generates a script. Useful as a starting skeleton, not as a finished test.",
+    "crumbs": [
+      "Blog",
+      "K6"
+    ]
+  },
+  {
+    "objectID": "k6.html#pitfalls",
+    "href": "k6.html#pitfalls",
+    "title": "K6",
+    "section": "Pitfalls",
+    "text": "Pitfalls\n\nYour generator is the bottleneck. Raise ulimit -n, widen the ephemeral port range, and watch k6’s own CPU. Above ~70% CPU your latency numbers include queueing in k6 itself.\nsleep() inside an arrival-rate executor still consumes a VU for its duration. That’s what preAllocatedVUs/maxVUs are sized for, and why dropped_iterations climbs if you under-allocate.\nDNS is cached per VU by default. If you’re testing behind a load balancer with rotating IPs, you may be hitting one backend the whole run.\nThresholds on http_req_duration without tags average across all endpoints and tell you nothing.\nsetup() timeouts — default is 60s. Seeding a large fixture in setup() will silently kill the run.\nk6 doesn’t do think-time modelling for you. No pacing means an unrealistic burst pattern.",
+    "crumbs": [
+      "Blog",
+      "K6"
+    ]
+  },
+  {
+    "objectID": "k6.html#for-your-django-stack-specifically",
+    "href": "k6.html#for-your-django-stack-specifically",
+    "title": "K6",
+    "section": "For your Django stack specifically",
+    "text": "For your Django stack specifically\nBake the auth dance into setup() once and pass the token down — re-authing per iteration load-tests your JWT signing, not your app. Tag every request by view name so http_req_duration{endpoint:...} lines up with what you see in pg_stat_statements. And run the harness from a different Proxmox VM than the app; loopback has no TLS handshake, no MTU, and no realistic connection cost.",
+    "crumbs": [
+      "Blog",
+      "K6"
+    ]
+  },
+  {
+    "objectID": "Kubernetes/kubernetes_overview.html",
+    "href": "Kubernetes/kubernetes_overview.html",
+    "title": "Kubernetes",
+    "section": "",
+    "text": "Control plane: - etcd — the only stateful component; the entire cluster is rows in this key-value store - kube-apiserver — the sole gateway to etcd; does authn, authz (RBAC), admission control, validation. Every other component talks only to this - kube-scheduler — assigns pending pods to nodes based on resource requests, affinity, taints - kube-controller-manager — the bundle of reconciliation loops (Deployment→ReplicaSet→Pod, node lifecycle, endpoints)\nPer node: - kubelet — watches for pods assigned to its node, drives the container runtime (containerd), reports status - kube-proxy — programs iptables/nftables/IPVS rules so Service ClusterIPs resolve to pod IPs. Increasingly replaced by eBPF (Cilium) - CNI plugin — actual pod networking",
+    "crumbs": [
+      "Blog",
+      "Kubernetes",
+      "Kubernetes"
+    ]
+  },
+  {
+    "objectID": "Kubernetes/kubernetes_overview.html#the-architecture",
+    "href": "Kubernetes/kubernetes_overview.html#the-architecture",
+    "title": "Kubernetes",
+    "section": "",
+    "text": "Control plane: - etcd — the only stateful component; the entire cluster is rows in this key-value store - kube-apiserver — the sole gateway to etcd; does authn, authz (RBAC), admission control, validation. Every other component talks only to this - kube-scheduler — assigns pending pods to nodes based on resource requests, affinity, taints - kube-controller-manager — the bundle of reconciliation loops (Deployment→ReplicaSet→Pod, node lifecycle, endpoints)\nPer node: - kubelet — watches for pods assigned to its node, drives the container runtime (containerd), reports status - kube-proxy — programs iptables/nftables/IPVS rules so Service ClusterIPs resolve to pod IPs. Increasingly replaced by eBPF (Cilium) - CNI plugin — actual pod networking",
+    "crumbs": [
+      "Blog",
+      "Kubernetes",
+      "Kubernetes"
+    ]
+  },
+  {
+    "objectID": "Kubernetes/kubernetes_overview.html#objects-you-actually-use",
+    "href": "Kubernetes/kubernetes_overview.html#objects-you-actually-use",
+    "title": "Kubernetes",
+    "section": "Objects you actually use",
+    "text": "Objects you actually use\n\n\n\n\n\n\n\nObject\nPurpose\n\n\n\n\nPod\nOne or more co-located containers sharing a network namespace and volumes. You rarely create these directly\n\n\nDeployment\nStateless workloads. Manages ReplicaSets; gives you rolling updates and rollback\n\n\nStatefulSet\nStable identity + per-pod storage. Postgres, Redis. Usually a sign you should use managed services instead\n\n\nDaemonSet\nOne pod per node. Log shippers, CNI, node exporters\n\n\nJob / CronJob\nRun-to-completion. Your Celery-style batch work, migrations\n\n\nService\nStable virtual IP + DNS name load-balancing to a label-selected set of pods. Types: ClusterIP, NodePort, LoadBalancer\n\n\nIngress / Gateway API\nL7 HTTP routing, TLS termination\n\n\nConfigMap / Secret\nInjected as env vars or mounted files. Secrets are base64, not encrypted by default — enable encryption at rest\n\n\nPVC / PV / StorageClass\nStorage claim, the actual volume, and the dynamic provisioner\n\n\nNamespace\nSoft isolation boundary. Not a security boundary on its own\n\n\nCRD + controller\nHow you extend the API. This is the “operator pattern”\n\n\n\nLabels and selectors are the connective tissue. Services find pods by label, not by name. Deployments own ReplicaSets by label. Get sloppy with labels and you get very confusing bugs.",
+    "crumbs": [
+      "Blog",
+      "Kubernetes",
+      "Kubernetes"
+    ]
+  },
+  {
+    "objectID": "Kubernetes/kubernetes_overview.html#the-parts-that-bite-people",
+    "href": "Kubernetes/kubernetes_overview.html#the-parts-that-bite-people",
+    "title": "Kubernetes",
+    "section": "The parts that bite people",
+    "text": "The parts that bite people\nNetworking model. Every pod gets a routable IP; all pods can reach all pods without NAT. The CNI plugin makes that true — Cilium (eBPF, best-in-class, includes network policy and can replace kube-proxy), Calico, or Flannel (simplest, least featureful). Default posture is flat and open: you need NetworkPolicy objects to restrict anything, and Flannel doesn’t implement them.\nIngress is in flux. Ingress NGINX — the de facto default for a decade — is being retired. There will be no further releases for bug fixes or security patches after retirement, and the recommended path is migration to Gateway API or third-party ingress controllers, none of which are drop-in replacements. If you’re starting now, learn Gateway API (GatewayClass/Gateway/HTTPRoute) rather than Ingress. Envoy Gateway or Cilium Gateway are reasonable implementations.\nResource requests vs limits. Requests drive scheduling; limits drive enforcement. CPU limits cause throttling (usually bad — consider omitting them). Memory limits cause OOMKill (necessary). Getting requests wrong is the #1 cause of both bad density and mystery evictions. QoS class (Guaranteed/Burstable/BestEffort) determines eviction order.\nProbes. liveness restarts the container, readiness pulls it from Service endpoints, startup covers slow boots. A liveness probe pointed at a dependency-checking endpoint will cascade-restart your whole cluster during a DB blip. Liveness should check this process, readiness can check dependencies.\nStorage is the hard part. Stateful workloads want a CSI driver with real semantics — Longhorn or Rook/Ceph on-prem, cloud EBS/PD otherwise. ReadWriteMany is often what people want and rarely what they should build on.",
+    "crumbs": [
+      "Blog",
+      "Kubernetes",
+      "Kubernetes"
+    ]
+  },
+  {
+    "objectID": "Kubernetes/kubernetes_overview.html#operating-it",
+    "href": "Kubernetes/kubernetes_overview.html#operating-it",
+    "title": "Kubernetes",
+    "section": "Operating it",
+    "text": "Operating it\n\nkubectl — get, describe, logs, exec, port-forward, apply, and events --sort-by. describe and events solve ~70% of incidents.\nPackaging — Helm (templated YAML, de facto standard, painful string templating) or Kustomize (overlay-based patches, built into kubectl, no templating). For your own apps, Kustomize; for third-party charts, Helm.\nGitOps — Argo CD or Flux. Git is the source of truth, a controller reconciles the cluster to it. This is the correct way to run k8s and worth adopting from day one.\nObservability — Prometheus + Grafana (kube-prometheus-stack), Loki for logs, OpenTelemetry for traces.\nAutoscaling — HPA (pod count from metrics), VPA (right-sizes requests), Cluster Autoscaler / Karpenter (node count).\nSecurity — RBAC, Pod Security Admission (replaced PodSecurityPolicy), NetworkPolicy, external secrets (External Secrets Operator or Vault), image scanning, admission policies via Kyverno or the built-in ValidatingAdmissionPolicy (CEL).",
+    "crumbs": [
+      "Blog",
+      "Kubernetes",
+      "Kubernetes"
+    ]
+  },
+  {
+    "objectID": "Kubernetes/kubernetes_overview.html#version-reality",
+    "href": "Kubernetes/kubernetes_overview.html#version-reality",
+    "title": "Kubernetes",
+    "section": "Version reality",
+    "text": "Version reality\nCurrent stable is the 1.36.x line, with 1.37 in beta. The project supports the three most recent minor versions on a roughly 15-week release cycle, giving each release about 14 months of life. That means you will be upgrading two to three times a year, forever — that’s the ops tax made concrete. Recent notables: in-place pod resource updates went stable, and user namespaces went GA, mapping container root to an unprivileged host user so a breakout grants no host admin rights.",
+    "crumbs": [
+      "Blog",
+      "Kubernetes",
+      "Kubernetes"
+    ]
+  },
+  {
+    "objectID": "Kubernetes/kubernetes_overview.html#distributions",
+    "href": "Kubernetes/kubernetes_overview.html#distributions",
+    "title": "Kubernetes",
+    "section": "Distributions",
+    "text": "Distributions\n\nk3s — single binary, low memory, batteries included. Right choice for your homelab. Run it in a few Proxmox VMs, or on Debian/Ubuntu guests.\nTalos Linux — immutable, API-driven OS with no shell. The most “correct” bare-metal option, excellent on Proxmox, steeper initial curve.\nkubeadm — the reference way to build a cluster manually. Do this once to understand the pieces.\nkind / minikube — local dev clusters.\nEKS/GKE/AKS — managed control plane. If you ever run this in production, use one of these; do not self-manage etcd.",
+    "crumbs": [
+      "Blog",
+      "Kubernetes",
+      "Kubernetes"
+    ]
+  },
+  {
+    "objectID": "Kubernetes/kubernetes_overview.html#learning-path-id-actually-recommend",
+    "href": "Kubernetes/kubernetes_overview.html#learning-path-id-actually-recommend",
+    "title": "Kubernetes",
+    "section": "Learning path I’d actually recommend",
+    "text": "Learning path I’d actually recommend\n\nkind create cluster, deploy a Django app + Postgres by hand-writing Deployment/Service/Ingress/ConfigMap/Secret YAML. No Helm. Feel the boilerplate.\nBreak things deliberately: kill pods, set a bad liveness probe, exhaust memory limits, mislabel a selector. Debug with describe/events/logs.\nBuild a 3-node k3s cluster on Proxmox VMs with Cilium and Longhorn. Add Argo CD pointed at a git repo.\nRead Kubernetes Up & Running alongside, and the API reference for the objects you touch.\n\nSkip: writing your own operator, service mesh (Istio/Linkerd), and multi-cluster anything until you have a concrete problem that demands them.",
+    "crumbs": [
+      "Blog",
+      "Kubernetes",
+      "Kubernetes"
+    ]
+  },
+  {
+    "objectID": "Docker/postgresql.html",
+    "href": "Docker/postgresql.html",
+    "title": "Docker Postgresql",
+    "section": "",
+    "text": "docker run -d \\\n  --name my-postgres \\\n  -e POSTGRES_USER=ben \\\n  -e POSTGRES_PASSWORD=secretpassword \\\n  -e POSTGRES_DB=mydb \\\n  -p 5432:5432 \\\n  postgres:16\nWhat this does:\n\n-d – runs detached\n--name – container name for easy reference\n-e POSTGRES_* – env vars to create a user, password, and default database\n-p 5432:5432 – exposes Postgres on your host at port 5432\npostgres:16 – official image, version 16 (change as needed)\n\nConnect from host:\npsql postgresql://ben:secretpassword@localhost:5432/mydb\n# or\npsql -h localhost -p 5432 -U ben -d mydb\nThis is ephemeral though—data is lost if you remove the container.",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Postgresql"
+    ]
+  },
+  {
+    "objectID": "Docker/postgresql.html#quick-start-with-docker-run-good-for-local-testing",
+    "href": "Docker/postgresql.html#quick-start-with-docker-run-good-for-local-testing",
+    "title": "Docker Postgresql",
+    "section": "",
+    "text": "docker run -d \\\n  --name my-postgres \\\n  -e POSTGRES_USER=ben \\\n  -e POSTGRES_PASSWORD=secretpassword \\\n  -e POSTGRES_DB=mydb \\\n  -p 5432:5432 \\\n  postgres:16\nWhat this does:\n\n-d – runs detached\n--name – container name for easy reference\n-e POSTGRES_* – env vars to create a user, password, and default database\n-p 5432:5432 – exposes Postgres on your host at port 5432\npostgres:16 – official image, version 16 (change as needed)\n\nConnect from host:\npsql postgresql://ben:secretpassword@localhost:5432/mydb\n# or\npsql -h localhost -p 5432 -U ben -d mydb\nThis is ephemeral though—data is lost if you remove the container.",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Postgresql"
+    ]
+  },
+  {
+    "objectID": "Docker/postgresql.html#proper-docker-compose.yml-with-persistent-volume",
+    "href": "Docker/postgresql.html#proper-docker-compose.yml-with-persistent-volume",
+    "title": "Docker Postgresql",
+    "section": "2. Proper docker-compose.yml with persistent volume",
+    "text": "2. Proper docker-compose.yml with persistent volume\nCreate a docker-compose.yml:\nversion: \"3.9\"\n\nservices:\n  db:\n    image: postgres:16\n    container_name: my-postgres\n    restart: unless-stopped\n    environment:\n      POSTGRES_USER: ben\n      POSTGRES_PASSWORD: secretpassword\n      POSTGRES_DB: mydb\n    ports:\n      - \"5432:5432\"\n    volumes:\n      # Named volume for persistent data\n      - postgres_data:/var/lib/postgresql/data\n      # Optional: init scripts\n      - ./docker/postgres/init:/docker-entrypoint-initdb.d\n      # Optional: custom config file\n      # - ./docker/postgres/postgresql.conf:/etc/postgresql/postgresql.conf\n\nvolumes:\n  postgres_data:\nThen:\ndocker compose up -d\n\nWhat’s happening here:\n\nData persistence: postgres_data:/var/lib/postgresql/data\n\npostgres_data is a named volume managed by Docker.\nYou can inspect it later with docker volume ls / docker volume inspect.\n\nInit scripts: ./docker/postgres/init:/docker-entrypoint-initdb.d\n\nAny .sql or .sh placed there will run once on first DB init.\nUse this to create extra users, extensions, seed data, etc.\n\n\nExample docker/postgres/init/01_create_extensions.sql:\nCREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";\nCREATE EXTENSION IF NOT EXISTS \"pgcrypto\";",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Postgresql"
+    ]
+  },
+  {
+    "objectID": "Docker/postgresql.html#connecting-from-another-container-your-app",
+    "href": "Docker/postgresql.html#connecting-from-another-container-your-app",
+    "title": "Docker Postgresql",
+    "section": "3. Connecting from another container (your app)",
+    "text": "3. Connecting from another container (your app)\nIn docker-compose.yml you’d have something like:\nversion: \"3.9\"\n\nservices:\n  db:\n    image: postgres:16\n    environment:\n      POSTGRES_USER: ben\n      POSTGRES_PASSWORD: secretpassword\n      POSTGRES_DB: mydb\n    volumes:\n      - postgres_data:/var/lib/postgresql/data\n\n  backend:\n    build: ./backend\n    depends_on:\n      - db\n    environment:\n      DATABASE_URL: postgres://ben:secretpassword@db:5432/mydb\n    # or explicit variables:\n    #   DB_HOST: db\n    #   DB_PORT: 5432\n    #   DB_NAME: mydb\n    #   DB_USER: ben\n    #   DB_PASSWORD: secretpassword\n\nvolumes:\n  postgres_data:\nKey point: inside the Docker network created by Compose, the hostname for Postgres is the service name → db, not localhost.\nSo your app connects to:\npostgres://ben:secretpassword@db:5432/mydb",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Postgresql"
+    ]
+  },
+  {
+    "objectID": "Docker/postgresql.html#custom-configuration-tuning",
+    "href": "Docker/postgresql.html#custom-configuration-tuning",
+    "title": "Docker Postgresql",
+    "section": "4. Custom configuration & tuning",
+    "text": "4. Custom configuration & tuning\nIf you need to override postgresql.conf:\n\nCopy the default config from the container:\ndocker run --rm postgres:16 cat /usr/share/postgresql/postgresql.conf.sample &gt; postgresql.conf\nEdit postgresql.conf in your project (for example, ./docker/postgres/postgresql.conf).\nMount it into the container and tell Postgres to use it.\n\nservices:\n  db:\n    image: postgres:16\n    command: [\"postgres\", \"-c\", \"config_file=/etc/postgresql/postgresql.conf\"]\n    volumes:\n      - postgres_data:/var/lib/postgresql/data\n      - ./docker/postgres/postgresql.conf:/etc/postgresql/postgresql.conf\nYou can also override individual settings with -c flags in the command, for quick tweaks:\ncommand:\n  [\n    \"postgres\",\n    \"-c\", \"shared_buffers=256MB\",\n    \"-c\", \"max_connections=100\"\n  ]",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Postgresql"
+    ]
+  },
+  {
+    "objectID": "Docker/postgresql.html#common-pitfalls-gotchas",
+    "href": "Docker/postgresql.html#common-pitfalls-gotchas",
+    "title": "Docker Postgresql",
+    "section": "5. Common pitfalls & gotchas",
+    "text": "5. Common pitfalls & gotchas\n\n5.1 Changing POSTGRES_* after data exists\n\nThe POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB env vars are only used on first init.\nIf you change them later but keep the same volume, nothing changes in the DB itself.\nTo “re-init” with new values, you must delete the volume (and lose data) or change credentials inside Postgres manually.\n\ndocker compose down -v   # WARNING: removes postgres_data volume & all data\ndocker compose up -d\n\n\n5.2 Using localhost from inside containers\n\nFrom host → connect to localhost:5432.\nFrom container → connect to db:5432 (service name), not localhost.\n\n\n\n5.3 Passwords in docker-compose.yml\n\nFor dev: env vars in docker-compose.yml are fine.\nFor prod: use .env files or Docker secrets / your infra’s secret manager.\n\nExample with .env:\n.env:\nPOSTGRES_USER=ben\nPOSTGRES_PASSWORD=super-secret\nPOSTGRES_DB=mydb\ndocker-compose.yml:\nservices:\n  db:\n    image: postgres:16\n    env_file:\n      - .env\n\n\n5.4 Backups\nDocker doesn’t change how you back up Postgres; you still use pg_dump / pg_dumpall:\n# From host\ndocker exec -t my-postgres pg_dump -U ben mydb &gt; mydb_backup.sql\nOr run a backup container on a schedule (cron / GitHub Actions / whatever).",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Postgresql"
+    ]
+  },
+  {
+    "objectID": "Docker/docker_overview.html",
+    "href": "Docker/docker_overview.html",
+    "title": "Docker Overview",
+    "section": "",
+    "text": "Dockerfile: Blueprint for building a docker image\ncompose.yml: Builds and runs multiple docker images\nrequirements.txt: pip install libraries list\nImage: Template for running a docker containers\nContainer: Running process",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Overview"
+    ]
+  },
+  {
+    "objectID": "Docker/docker_overview.html#definitions",
+    "href": "Docker/docker_overview.html#definitions",
+    "title": "Docker Overview",
+    "section": "",
+    "text": "Dockerfile: Blueprint for building a docker image\ncompose.yml: Builds and runs multiple docker images\nrequirements.txt: pip install libraries list\nImage: Template for running a docker containers\nContainer: Running process",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Overview"
+    ]
+  },
+  {
+    "objectID": "Docker/docker_overview.html#docker-file",
+    "href": "Docker/docker_overview.html#docker-file",
+    "title": "Docker Overview",
+    "section": "Docker File",
+    "text": "Docker File\nFILE _image_ - base image ex. ubuntu, node:12\nWORKDIR _filename_- like when you cd into a directory\nevery step from now is considered layes\nCOPY _filename_ _location_- ex. COPY package*.json ./\nRUN _npm install_ - exec commands - shell form\nCOPY . . - copy all the file in directory into the container\nENV _PORT=8080_ -\nEXPOSE _port_ - exposed port ex. 8080\nCMD [\"npm\" \"start\"] - only one of these in the file. exec form\n\nExample: pytorch image\n# Base image with PyTorch and GPU support\nFROM pytorch/pytorch:latest\n\n# Install additional packages\nRUN apt-get update && \\\n    apt-get install -y sudo software-properties-common\n\nRUN add-apt-repository -y ppa:bashtop-monitor/bashtop && \\\n    add-apt-repository -y ppa:flexiondotorg/nvtop && \\\n    apt-get update\n\nRUN apt-get install -y bashtop nvtop python3-pip \\\n    vim poppler-utils git openssh-client && \\\n    apt-get clean\n\n# Add user 'ben'\nRUN useradd -m -s /bin/bash ben && \\\n    echo \"ben ALL=(ALL) NOPASSWD:ALL\" &gt;&gt; /etc/sudoers\n\n# Set working directory\nWORKDIR /home/ben\n\n# Switch to user ben\nUSER ben\n\n# Add /home/ben/.local/bin to the PATH\nENV PATH=\"/home/ben/.local/bin:${PATH}\"\n\n# Copy requirements file\nCOPY requirements.txt .\n\n# Install required Python packages\nRUN pip install --no-cache-dir -r requirements.txt\n\nRUN git config --global user.email &lt;email&gt; \\\n    && git config --global user.name \"main_docker\"\n\n# COPY /home/ben/'.jupyter' '.jupyter'\nADD /apputils-extension /home/ben/.jupyter/lab/user-settings/@jupyterlab/apputils-extension\n\n# Expose Jupyter notebook port\nEXPOSE 8888\n\n# Command to start JupyterLab with dark theme\nCMD [\"jupyter\", \"lab\", \"--ip=0.0.0.0\", \"--port=8888\", \"--no-browser\", \"--NotebookApp.theme='JupyterLab Dark'\", \"--NotebookApp.token='test'\"]\n\n\n.dockerignore\n\njust like a git ignore file\n\n\n\nBuilding Docker image\ndocker build -t _name_ _path_\nex.\ndocker build -t test:taggedv0.1\n-t : tag\n\n\nView Docker Images\ndocker images\n\n\nDelete Image\ndocker rmi _Image_\n\n\nRunning Docker image as Container\ndocke run -p 5000:8080 _name_\ndocker run -p 8888:8888 -td --gpus=all --name testcontainer test\n\n\nView Dockers Containers Running\ndocker ps -a\n\n\nDeleting Docker Containers\n\ndocker rmi _image_\n\n\nStop Docker Running\ndocker stop $(docker ps -aq)",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Overview"
+    ]
+  },
+  {
+    "objectID": "Docker/docker_overview.html#volumes",
+    "href": "Docker/docker_overview.html#volumes",
+    "title": "Docker Overview",
+    "section": "Volumes",
+    "text": "Volumes\n\nFolder which multiple containers can access\n\ndocker volume create _name_\n\nUsing volumes in container\ndocker run --mount source=_volumename_, target = _location_",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Overview"
+    ]
+  },
+  {
+    "objectID": "Docker/docker_overview.html#docker-debugging",
+    "href": "Docker/docker_overview.html#docker-debugging",
+    "title": "Docker Overview",
+    "section": "Docker Debugging",
+    "text": "Docker Debugging\n\nInspect logs in docker desktop\ndocker exec",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Overview"
+    ]
+  },
+  {
+    "objectID": "Docker/docker_overview.html#tips",
+    "href": "Docker/docker_overview.html#tips",
+    "title": "Docker Overview",
+    "section": "TIPs",
+    "text": "TIPs\n\neach docker should only do one task\nDone through docker-compose.yml",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Overview"
+    ]
+  },
+  {
+    "objectID": "Docker/docker_overview.html#compose.yml",
+    "href": "Docker/docker_overview.html#compose.yml",
+    "title": "Docker Overview",
+    "section": "Compose.yml",
+    "text": "Compose.yml\n\nExample\n\nthis GPU\n\n\nnvidia Docs\n\nservices:\n  torch:\n    container_name: main_docker\n    \n    build:\n      context: .\n\n    volumes:\n      - /home/ben/BENEDICT_Only:/home/ben/BENEDICT_Only\n      \n    ports:\n      - \"8888:8888\"\n    \n    deploy:\n      resources:\n        reservations:\n          devices:\n            - driver: nvidia\n              count: 1\n              capabilities: [gpu]\nversion: '3'\nservices:\n    web: \n        build: .\n        ports:\n            - \"8080:8080\"\n    db: \n        image: \"mysql\"\n        environment:\n            MYSQL_ROOT_PASSWORD: password\n        volumes:\n            - db-data:/foo\n            \nvolumes:\n    db-data:\n            \n\n\nRunning Docker Compose\ndocker-compose up\n\n\nStopping Docker Compose\ndocker-compose down",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Overview"
+    ]
+  },
+  {
+    "objectID": "Docker/docker_overview.html#requirements.txt",
+    "href": "Docker/docker_overview.html#requirements.txt",
+    "title": "Docker Overview",
+    "section": "requirements.txt",
+    "text": "requirements.txt\n\nExample\njupyterlab\nfastai\nfastbook\ntimm\npdf2image\npandas\nnbdev\nnbdevAuto",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Overview"
+    ]
+  },
+  {
+    "objectID": "Docker/docker_overview.html#docker-network-types",
+    "href": "Docker/docker_overview.html#docker-network-types",
+    "title": "Docker Overview",
+    "section": "Docker Network Types",
+    "text": "Docker Network Types\n\nDocker containers can use several types of networks to communicate with each other, the host, or external networks. Here’s a summary of the main Docker network types:\n\n\n1. Bridge Network (Default)\n\nDescription: This is the default network type for Docker containers. When you run a container without specifying a network, it is attached to the bridge network.\nUse Case: Ideal for communication between multiple containers on the same Docker host but isolated from the host’s network.\nExample:\ndocker network create my_bridge_network\ndocker run --network=my_bridge_network my_container\n\n\n\n2. Host Network\n\nDescription: The container shares the host’s network stack, meaning it has direct access to the host’s network interfaces (no isolation).\nUse Case: Useful when you want to avoid the network isolation provided by Docker, such as when running services that need high network performance or direct access to host network services.\nExample:\ndocker run --network=host my_container\nNote: Not available on Windows containers.\n\n\n\n3. None Network\n\nDescription: The container has no network interfaces, except for the loopback interface (localhost).\nUse Case: Useful for standalone containers that don’t need network connectivity.\nExample:\ndocker run --network=none my_container\n\n\n\n4. Overlay Network\n\nDescription: This network allows containers running on different Docker hosts to communicate with each other. It is commonly used with Docker Swarm or Kubernetes.\nUse Case: Useful for deploying a multi-host Docker network (e.g., in a swarm or Kubernetes cluster).\nExample:\ndocker network create --driver overlay my_overlay_network\ndocker service create --network=my_overlay_network my_service\n\n\n\n5. Macvlan Network\n\nDescription: This network type allows you to assign a MAC address to a container, making it appear as a physical device on your network. The container gets a unique IP address on the local network.\nUse Case: Useful for running containers that need to appear directly on the physical network and communicate with other physical devices (e.g., running legacy applications).\nExample:\ndocker network create -d macvlan \\\n  --subnet=192.168.1.0/24 \\\n  --gateway=192.168.1.1 \\\n  -o parent=eth0 my_macvlan_network\n\ndocker run --network=my_macvlan_network my_container\n\n\n\n6. Custom User-Defined Bridge Network\n\nDescription: Similar to the default bridge network but user-defined networks allow for better control and communication between containers. Containers on the same custom bridge network can communicate by name, and it isolates containers from others outside the network.\nUse Case: Recommended for multi-container applications where containers need to communicate with each other (e.g., a web service with a separate database).\nExample:\ndocker network create my_bridge_network\ndocker run --network=my_bridge_network my_container\n\n\n\n7. IPvlan Network\n\nDescription: Similar to macvlan, but more lightweight and allows you to manage how your containers connect to the underlying network by operating at the network layer (Layer 3).\nUse Case: Useful for containers that need to communicate directly with external networks.\nExample:\ndocker network create -d ipvlan \\\n  --subnet=192.168.1.0/24 \\\n  --gateway=192.168.1.1 \\\n  -o parent=eth0 my_ipvlan_network\n\ndocker run --network=my_ipvlan_network my_container\n\n\n\n8. Ingress Network (Swarm Only)\n\nDescription: The default network for services in Docker Swarm mode. It is used for load balancing services across the swarm.\nUse Case: Automatically created and used when you initialize Docker Swarm. It’s useful for scaling services and distributing them across multiple hosts.\nExample:\ndocker service create --name my_service --network ingress my_image\n\n\n\nSummary of Network Types:\n\n\n\n\n\n\n\n\n\nNetwork Type\nIsolation\nMulti-host\nUse Case\n\n\n\n\nBridge (Default)\nYes\nNo\nCommunication between containers on the same host\n\n\nHost\nNo\nNo\nHigh performance, direct access to host network\n\n\nNone\nN/A\nN/A\nContainers that don’t need network connectivity\n\n\nOverlay\nYes\nYes\nMulti-host communication (e.g., Docker Swarm, Kubernetes)\n\n\nMacvlan\nNo\nYes\nContainers appear as devices on the physical network\n\n\nIPvlan\nNo\nYes\nLightweight alternative to macvlan for Layer 3 connectivity\n\n\nCustom Bridge\nYes\nNo\nEnhanced control over container networking\n\n\nIngress (Swarm)\nYes\nYes\nSwarm load balancing\n\n\n\nLet me know if you need further details on any of these!",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Overview"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html",
+    "href": "Docker/lxc_&_lxd.html",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "",
+    "text": "Feature\nLXC\nLXD\nDocker\n\n\n\n\nLevel\nLow-level\nHigh-level\nHigh-level\n\n\nContainer type\nSystem\nSystem\nApplication\n\n\nRuns full OS\nYes\nYes\nNo\n\n\nInit system (systemd)\nYes\nYes\nNo\n\n\nPersistent by default\nYes\nYes\nNo\n\n\nImage registry\nNo\nYes\nYes\n\n\nClustering\nNo\nYes\nYes (Swarm)\n\n\nEase of use\nHard\nEasy\nEasiest\n\n\n\nSystem containers (LXC/LXD) behave like VMs — they boot an OS, run systemd, have multiple processes. Application containers (Docker) run a single process/app.",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#lxc-vs-lxd-vs-docker",
+    "href": "Docker/lxc_&_lxd.html#lxc-vs-lxd-vs-docker",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "",
+    "text": "Feature\nLXC\nLXD\nDocker\n\n\n\n\nLevel\nLow-level\nHigh-level\nHigh-level\n\n\nContainer type\nSystem\nSystem\nApplication\n\n\nRuns full OS\nYes\nYes\nNo\n\n\nInit system (systemd)\nYes\nYes\nNo\n\n\nPersistent by default\nYes\nYes\nNo\n\n\nImage registry\nNo\nYes\nYes\n\n\nClustering\nNo\nYes\nYes (Swarm)\n\n\nEase of use\nHard\nEasy\nEasiest\n\n\n\nSystem containers (LXC/LXD) behave like VMs — they boot an OS, run systemd, have multiple processes. Application containers (Docker) run a single process/app.",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#installation",
+    "href": "Docker/lxc_&_lxd.html#installation",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "Installation",
+    "text": "Installation\nLXD via snap (recommended):\nsudo snap install lxd\nsudo usermod -aG lxd $USER\nnewgrp lxd        # apply group without logout\nlxd init          # interactive setup wizard\nLXD via apt (older, Ubuntu 20.04 and below):\nsudo apt install lxd lxd-client\nLXC only (without LXD):\nsudo apt install lxc",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#lxd-init-what-each-option-means",
+    "href": "Docker/lxc_&_lxd.html#lxd-init-what-each-option-means",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "lxd init — What Each Option Means",
+    "text": "lxd init — What Each Option Means\nWould you like to use LXD clustering? → No (unless multi-node)\nDo you want to configure a new storage pool? → Yes\nName of the new storage pool: default\nName of the storage backend (dir, btrfs, lvm, zfs): dir  ← simplest\nWould you like to connect to a MAAS server? → No\nWould you like to create a new local network bridge? → Yes\nWhat should the new bridge be called? → lxdbr0\nWhat IPv4 address should be used? → auto\nWould you like LXD to be available over the network? → No (yes for remote)\nWould you like stale cached images to be updated automatically? → Yes",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#core-concepts",
+    "href": "Docker/lxc_&_lxd.html#core-concepts",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "Core Concepts",
+    "text": "Core Concepts\n\nInstances\nLXD manages two types: - Containers — LXC-based, shared kernel, very lightweight - Virtual Machines — full hardware virtualization, own kernel\n\n\nImages\nPre-built OS rootfs snapshots. LXD pulls from image servers. Key servers: - ubuntu: — Official Ubuntu images - ubuntu-daily: — Daily Ubuntu builds - images: — Community images (Alpine, Fedora, Debian, Arch, etc.)\n\n\nProfiles\nReusable config templates applied to containers (networking, devices, limits).\n\n\nStorage Pools\nWhere container filesystems live. Backends: dir, btrfs, zfs, lvm, ceph.\n\n\nNetworks\nLXD creates a bridge (lxdbr0) with NAT by default. Containers get IPs in 10.x.x.x.",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#essential-commands",
+    "href": "Docker/lxc_&_lxd.html#essential-commands",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "Essential Commands",
+    "text": "Essential Commands\n\nContainer Lifecycle\nlxc launch ubuntu:22.04 mycontainer        # create + start\nlxc start mycontainer\nlxc stop mycontainer\nlxc stop mycontainer --force               # kill immediately\nlxc restart mycontainer\nlxc delete mycontainer                     # must be stopped first\nlxc delete mycontainer --force             # stop + delete\n\n\nListing & Info\nlxc list                                   # all containers\nlxc list --format=json                     # JSON output\nlxc info mycontainer                       # detailed info\nlxc config show mycontainer                # full config YAML\n\n\nShell Access\nlxc exec mycontainer -- bash               # root shell\nlxc exec mycontainer -- su - ubuntu        # as specific user\nlxc exec mycontainer -- /bin/sh            # for minimal images\nlxc console mycontainer                    # attach to console (for VMs)\n\n\nRunning Commands\nlxc exec mycontainer -- apt update\nlxc exec mycontainer -- systemctl status nginx\nlxc exec mycontainer -- env VAR=value command\n\n\nFile Transfer\nlxc file push localfile.txt mycontainer/root/\nlxc file pull mycontainer/etc/nginx/nginx.conf ./\nlxc file edit mycontainer/etc/hosts         # edit in place\nlxc file push -r ./mydir mycontainer/root/  # recursive",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#images-1",
+    "href": "Docker/lxc_&_lxd.html#images-1",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "Images",
+    "text": "Images\nlxc image list                             # locally cached images\nlxc image list ubuntu:                     # browse Ubuntu images\nlxc image list images: alpine              # find Alpine images\nlxc image list images: | grep -i fedora\nlxc image info ubuntu:22.04\nlxc image delete &lt;fingerprint&gt;             # remove cached image\nCommon image aliases:\nubuntu:22.04       # Ubuntu Jammy\nubuntu:20.04       # Ubuntu Focal\nubuntu:24.04       # Ubuntu Noble\nimages:alpine/3.19\nimages:debian/12\nimages:fedora/39\nimages:archlinux\nimages:centos/9-Stream",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#configuration-limits",
+    "href": "Docker/lxc_&_lxd.html#configuration-limits",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "Configuration & Limits",
+    "text": "Configuration & Limits\n\nResource Limits\n# CPU\nlxc config set mycontainer limits.cpu 2\nlxc config set mycontainer limits.cpu.allowance 50%\n\n# Memory\nlxc config set mycontainer limits.memory 512MB\nlxc config set mycontainer limits.memory.swap false\n\n# Disk\nlxc config device set mycontainer root size 20GB\n\n\nEnvironment Variables\nlxc config set mycontainer environment.MY_VAR=hello\n\n\nView / Edit Full Config\nlxc config show mycontainer\nlxc config edit mycontainer               # opens in $EDITOR",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#networking",
+    "href": "Docker/lxc_&_lxd.html#networking",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "Networking",
+    "text": "Networking\n\nDefault Setup\n\nBridge: lxdbr0 on host\nContainers get DHCP IPs like 10.178.x.x\nNAT out to internet by default\nContainers can reach each other on the bridge\n\n\n\nGet Container IP\nlxc list                                  # shows IP column\nlxc info mycontainer | grep -i inet\n\n\nPort Forwarding (proxy device)\n# Forward host port 8080 → container port 80\nlxc config device add mycontainer myport proxy \\\n  listen=tcp:0.0.0.0:8080 \\\n  connect=tcp:127.0.0.1:80\n\n\nStatic IP\nlxc network attach lxdbr0 mycontainer eth0\nlxc config device set mycontainer eth0 ipv4.address 10.178.0.100\n\n\nDirect bridge (macvlan — gets LAN IP)\nlxc config device add mycontainer eth0 nic \\\n  nictype=macvlan \\\n  parent=eth0",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#storage",
+    "href": "Docker/lxc_&_lxd.html#storage",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "Storage",
+    "text": "Storage\n\nStorage Pools\nlxc storage list\nlxc storage info default\nlxc storage create mypool btrfs           # create btrfs pool\nlxc storage create zfspool zfs            # create zfs pool\n\n\nVolumes\nlxc storage volume list default\nlxc storage volume create default myvolume\nlxc storage volume attach default myvolume mycontainer /mnt/data\n\n\nDisk Devices\n# Mount a host directory into container\nlxc config device add mycontainer shareddir disk \\\n  source=/home/user/data \\\n  path=/mnt/data",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#snapshots-backups",
+    "href": "Docker/lxc_&_lxd.html#snapshots-backups",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "Snapshots & Backups",
+    "text": "Snapshots & Backups\n# Snapshots\nlxc snapshot mycontainer snap1\nlxc snapshot mycontainer snap1 --stateful  # include RAM state\nlxc restore mycontainer snap1\nlxc delete mycontainer/snap1\nlxc info mycontainer                       # lists snapshots\n\n# Export / Import\nlxc export mycontainer mycontainer.tar.gz\nlxc import mycontainer.tar.gz\nlxc publish mycontainer --alias myimage    # make image from container",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#profiles-1",
+    "href": "Docker/lxc_&_lxd.html#profiles-1",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "Profiles",
+    "text": "Profiles\nProfiles let you define reusable config applied to many containers.\nlxc profile list\nlxc profile show default\nlxc profile create webserver\nlxc profile edit webserver                 # edit YAML\nlxc profile apply mycontainer default,webserver   # apply multiple\nlxc launch ubuntu:22.04 mycontainer --profile webserver\nExample profile YAML:\nconfig:\n  limits.cpu: \"2\"\n  limits.memory: 1GB\ndescription: Web server profile\ndevices:\n  eth0:\n    name: eth0\n    nictype: bridged\n    parent: lxdbr0\n    type: nic\n  root:\n    path: /\n    pool: default\n    type: disk\n  http:\n    type: proxy\n    listen: tcp:0.0.0.0:80\n    connect: tcp:127.0.0.1:80\nname: webserver",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#virtual-machines",
+    "href": "Docker/lxc_&_lxd.html#virtual-machines",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "Virtual Machines",
+    "text": "Virtual Machines\nLXD can also manage full VMs (requires qemu):\nlxc launch ubuntu:22.04 myvm --vm\nlxc launch ubuntu:22.04 myvm --vm --config limits.memory=2GB\nlxc console myvm                          # serial console\nlxc console myvm --type=vga              # graphical console\nSame lxc commands work — exec, file, snapshot, config, etc.",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#remote-clustering",
+    "href": "Docker/lxc_&_lxd.html#remote-clustering",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "Remote & Clustering",
+    "text": "Remote & Clustering\n\nRemote Hosts\nlxc remote add myserver https://192.168.1.10:8443\nlxc list myserver:\nlxc launch ubuntu:22.04 myserver:mycontainer\nlxc copy mycontainer myserver:mycontainer  # migrate\n\n\nClustering\n# On first node\nlxd init   # enable clustering, set name + address\n\n# On additional nodes\nlxd init   # join existing cluster\nlxc cluster list\nlxc cluster show node1",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#security",
+    "href": "Docker/lxc_&_lxd.html#security",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "Security",
+    "text": "Security\n\nPrivileged vs Unprivileged\n\nUnprivileged (default) — UIDs mapped to high host UIDs, safer\nPrivileged — container root = host root, needed for some workloads\n\nlxc config set mycontainer security.privileged true\n\n\nAppArmor & Seccomp\nLXD applies AppArmor profiles and seccomp filters by default. To disable:\nlxc config set mycontainer raw.lxc \"lxc.apparmor.profile=unconfined\"\n\n\nNesting (containers inside containers)\nlxc config set mycontainer security.nesting true",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#useful-patterns",
+    "href": "Docker/lxc_&_lxd.html#useful-patterns",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "Useful Patterns",
+    "text": "Useful Patterns\n\nRun a service and expose it\nlxc launch ubuntu:22.04 webserver\nlxc exec webserver -- apt install -y nginx\nlxc exec webserver -- systemctl enable --now nginx\nlxc config device add webserver http proxy \\\n  listen=tcp:0.0.0.0:80 connect=tcp:127.0.0.1:80\n\n\nAutostart on boot\nlxc config set mycontainer boot.autostart true\nlxc config set mycontainer boot.autostart.priority 10\n\n\nLimit a container completely\nlxc config set mycontainer limits.cpu 1\nlxc config set mycontainer limits.memory 256MB\nlxc config set mycontainer limits.processes 100",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/lxc_&_lxd.html#troubleshooting",
+    "href": "Docker/lxc_&_lxd.html#troubleshooting",
+    "title": "LXC and LXD — Complete Guide",
+    "section": "Troubleshooting",
+    "text": "Troubleshooting\nlxc list                                  # check state\nlxc info mycontainer                      # events + config\nlxc monitor                               # live event stream\njournalctl -u snap.lxd.daemon            # LXD daemon logs\nlxc query /1.0/containers                 # raw REST API\n\nThe key mental model: LXD containers are like fast VMs, not like Docker containers. They boot full OS, run systemd, persist by default, and are designed to be long-lived environments rather than ephemeral single-process runners.",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "LXC and LXD — Complete Guide"
+    ]
+  },
+  {
+    "objectID": "Docker/09_Influx_docker.html",
+    "href": "Docker/09_Influx_docker.html",
+    "title": "Influx Docker",
+    "section": "",
+    "text": "Influx Docker",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Influx Docker"
+    ]
+  },
+  {
+    "objectID": "Docker/09_Influx_docker.html#docker-compose.yml",
+    "href": "Docker/09_Influx_docker.html#docker-compose.yml",
+    "title": "Influx Docker",
+    "section": "docker-compose.yml",
+    "text": "docker-compose.yml\nservices:\n  influxdb:\n    image: influxdb:2.7\n    container_name: influxdb\n    ports:\n      - \"8086:8086\"\n    volumes:\n      - influxdb_data:/var/lib/influxdb2\n    environment:\n      - DOCKER_INFLUXDB_INIT_MODE=setup\n      - DOCKER_INFLUXDB_INIT_USERNAME=admin\n      - DOCKER_INFLUXDB_INIT_PASSWORD=adminpassword\n      - DOCKER_INFLUXDB_INIT_ORG=org\n      - DOCKER_INFLUXDB_INIT_BUCKET=bucket\n      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=token\n      - INFLUXD_HTTP_BIND_ADDRESS=:8086\n      - INFLUXD_HTTP_V1_COMPATIBILITY_API=true\n      - INFLUXD_HTTP_AUTH_ENABLED=true\n    restart: unless-stopped\n\nvolumes:\n  influxdb_data:",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Influx Docker"
+    ]
+  },
+  {
+    "objectID": "Docker/install_docker.html",
+    "href": "Docker/install_docker.html",
+    "title": "Install Docker",
+    "section": "",
+    "text": "# Add Docker's official GPG key:\nsudo apt-get update\nsudo apt-get install ca-certificates curl\nsudo install -m 0755 -d /etc/apt/keyrings\nsudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc\nsudo chmod a+r /etc/apt/keyrings/docker.asc\n\n# Add the repository to Apt sources:\necho \\\n  \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\\n  $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable\" | \\\n  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null\nsudo apt-get update\n\n\n\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin\n\n\n\n\nCheck if Docker is installed correctly by running\n\nsudo docker --version\n\n\n\n\nVerify that the Docker Engine installation is successful by running the hello-world image.\n\nsudo docker run hello-world",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "Docker/install_docker.html#install-docker-on-linux",
+    "href": "Docker/install_docker.html#install-docker-on-linux",
+    "title": "Install Docker",
+    "section": "",
+    "text": "# Add Docker's official GPG key:\nsudo apt-get update\nsudo apt-get install ca-certificates curl\nsudo install -m 0755 -d /etc/apt/keyrings\nsudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc\nsudo chmod a+r /etc/apt/keyrings/docker.asc\n\n# Add the repository to Apt sources:\necho \\\n  \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\\n  $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable\" | \\\n  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null\nsudo apt-get update\n\n\n\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin\n\n\n\n\nCheck if Docker is installed correctly by running\n\nsudo docker --version\n\n\n\n\nVerify that the Docker Engine installation is successful by running the hello-world image.\n\nsudo docker run hello-world",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "Docker/install_docker.html#manage-docker-as-a-non-root-user-optional",
+    "href": "Docker/install_docker.html#manage-docker-as-a-non-root-user-optional",
+    "title": "Install Docker",
+    "section": "Manage Docker as a Non-Root User (Optional)",
+    "text": "Manage Docker as a Non-Root User (Optional)\n\nCreate the docker group.\nsudo groupadd docker\n\n\nAdd your user to the docker group.\nsudo usermod -aG docker $USER\n\n\nYou can also run the following command to activate the changes to groups:\nnewgrp docker",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "Docker/install_docker.html#configure-docker-to-start-on-boot-with-systemd",
+    "href": "Docker/install_docker.html#configure-docker-to-start-on-boot-with-systemd",
+    "title": "Install Docker",
+    "section": "Configure Docker to start on boot with systemd",
+    "text": "Configure Docker to start on boot with systemd\nsudo systemctl enable docker.service\nsudo systemctl enable containerd.service\nsudo systemctl enable docker\n\nTo stop this behavior, use disable instead.\nsudo systemctl disable docker.service\nsudo systemctl disable containerd.service",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "Docker/install_docker.html#uninstall-docker",
+    "href": "Docker/install_docker.html#uninstall-docker",
+    "title": "Install Docker",
+    "section": "Uninstall Docker",
+    "text": "Uninstall Docker\n\nUninstall the Docker Engine, CLI, containerd, and Docker Compose packages:\nsudo apt-get purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras\n\n\nRemoving Images, containers, volumes\n\nImages, containers, volumes or custom configuration files on your host aren’t automatically removed. To delete all images, containers, and volumes:\n\nsudo rm -rf /var/lib/docker\nsudo rm -rf /var/lib/containerd",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "Docker/install_docker.html#using-docker-compose",
+    "href": "Docker/install_docker.html#using-docker-compose",
+    "title": "Install Docker",
+    "section": "Using Docker Compose",
+    "text": "Using Docker Compose\n\nInstall Docker Compose\nsudo apt-get update\nsudo apt-get install docker-compose-plugin\nor\nsudo curl -L \"https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose\nsudo chmod +x /usr/local/bin/docker-compose\n\n\n\nCreate a docker-compose.yml File\n\nCreate a docker-compose.yml file in your project directory\n\nversion: '3'\nservices:\n  web:\n    image: nginx\n    ports:\n      - \"80:80\"\n  db:\n    image: mysql:5.7\n    environment:\n      MYSQL_ROOT_PASSWORD: example\n\n\nRun Docker Compose\ndocker-compose up",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "Docker/install_docker.html#managing-docker-volumes-and-networks",
+    "href": "Docker/install_docker.html#managing-docker-volumes-and-networks",
+    "title": "Install Docker",
+    "section": "Managing Docker Volumes and Networks",
+    "text": "Managing Docker Volumes and Networks\n\nVolumes: Used to persist data outside of containers\n\ndocker volume create my_volume\ndocker run -d -v my_volume:/data ubuntu\n\nNetworks: Used to allow containers to communicate\n\ndocker network create my_network\ndocker run -d --network=my_network --name=container1 ubuntu\ndocker run -d --network=my_network --name=container2 ubuntu",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "Docker/install_docker.html#clean-up-unused-docker-resources",
+    "href": "Docker/install_docker.html#clean-up-unused-docker-resources",
+    "title": "Install Docker",
+    "section": "Clean Up Unused Docker Resources",
+    "text": "Clean Up Unused Docker Resources\n\nOver time, Docker might accumulate unused resources. You can clean them up with\n\ndocker system prune -a",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Install Docker"
+    ]
+  },
+  {
+    "objectID": "Docker/portainer.html",
+    "href": "Docker/portainer.html",
+    "title": "Docker Portainer",
+    "section": "",
+    "text": "services:\n  portainer:\n    image: portainer/portainer-ce:latest\n    container_name: portainer\n    restart: unless-stopped\n    ports:\n      - \"800:8000\"   # Port for Portainer Agent (optional)\n      - \"9443:9443\"   # Port for Portainer UI over HTTPS\n    volumes:\n      - /var/run/docker.sock:/var/run/docker.sock   # Access to Docker daemon\n      - ./portainer_data:/data                        # Persistent Portainer data\n\nvolumes:\n  portainer_data:",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Portainer"
+    ]
+  },
+  {
+    "objectID": "Docker/portainer.html#docker-compose.yml",
+    "href": "Docker/portainer.html#docker-compose.yml",
+    "title": "Docker Portainer",
+    "section": "",
+    "text": "services:\n  portainer:\n    image: portainer/portainer-ce:latest\n    container_name: portainer\n    restart: unless-stopped\n    ports:\n      - \"800:8000\"   # Port for Portainer Agent (optional)\n      - \"9443:9443\"   # Port for Portainer UI over HTTPS\n    volumes:\n      - /var/run/docker.sock:/var/run/docker.sock   # Access to Docker daemon\n      - ./portainer_data:/data                        # Persistent Portainer data\n\nvolumes:\n  portainer_data:",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Portainer"
+    ]
+  },
+  {
+    "objectID": "Docker/portainer.html#to-run",
+    "href": "Docker/portainer.html#to-run",
+    "title": "Docker Portainer",
+    "section": "To Run",
+    "text": "To Run\ndocker-compose up -d",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Portainer"
+    ]
+  },
+  {
+    "objectID": "Docker/portainer.html#url",
+    "href": "Docker/portainer.html#url",
+    "title": "Docker Portainer",
+    "section": "URL",
+    "text": "URL\nhttps://localhost:9443/",
+    "crumbs": [
+      "Blog",
+      "Docker",
+      "Docker Portainer"
+    ]
+  },
+  {
+    "objectID": "ansible.html",
+    "href": "ansible.html",
+    "title": "Ansible",
+    "section": "",
+    "text": "Ansible is an open-source IT automation and configuration management tool originally created by Michael DeHaan, now maintained by Red Hat.\nIt automates:\n\nServer configuration\nApplication deployment\nInfrastructure orchestration\nNetworking\nSecurity hardening\nCI/CD tasks\n\nUnlike many tools, it is agentless (uses SSH by default).",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#what-is-ansible",
+    "href": "ansible.html#what-is-ansible",
+    "title": "Ansible",
+    "section": "",
+    "text": "Ansible is an open-source IT automation and configuration management tool originally created by Michael DeHaan, now maintained by Red Hat.\nIt automates:\n\nServer configuration\nApplication deployment\nInfrastructure orchestration\nNetworking\nSecurity hardening\nCI/CD tasks\n\nUnlike many tools, it is agentless (uses SSH by default).",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#core-philosophy",
+    "href": "ansible.html#core-philosophy",
+    "title": "Ansible",
+    "section": "🧠 Core Philosophy",
+    "text": "🧠 Core Philosophy\n\n\n\nPrinciple\nMeaning\n\n\n\n\nAgentless\nNo software installed on target machines\n\n\nDeclarative-ish\nYou define desired state\n\n\nIdempotent\nSafe to run multiple times\n\n\nYAML-based\nHuman-readable playbooks\n\n\nPush model\nController pushes changes",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#how-ansible-works",
+    "href": "ansible.html#how-ansible-works",
+    "title": "Ansible",
+    "section": "🏗 How Ansible Works",
+    "text": "🏗 How Ansible Works\nControl Node (your machine)\n        |\n        | SSH\n        v\nManaged Nodes (servers, VMs, containers)\nIt:\n\nConnects via SSH\nCopies module temporarily\nExecutes\nRemoves module\nReports result",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#core-components",
+    "href": "ansible.html#core-components",
+    "title": "Ansible",
+    "section": "📦 Core Components",
+    "text": "📦 Core Components\n\n1️⃣ Inventory\nDefines hosts:\n[web]\n192.168.1.10\n192.168.1.11\n\n[db]\ndb.local\nOr dynamic (AWS, Azure, etc.).\n\n\n\n2️⃣ Playbooks\nYAML automation definitions:\n- name: Install Nginx\n  hosts: web\n  become: yes\n\n  tasks:\n    - name: Install package\n      apt:\n        name: nginx\n        state: present\nRun:\nansible-playbook site.yml\n\n\n\n3️⃣ Modules\nReusable actions.\nExamples:\n\n\n\nCategory\nModules\n\n\n\n\nPackages\napt, yum\n\n\nFiles\ncopy, template\n\n\nServices\nservice\n\n\nCloud\nec2, azure_rm\n\n\nContainers\ndocker_container\n\n\nK8s\nk8s\n\n\n\nOver 3000+ modules available.\n\n\n\n4️⃣ Roles (Reusable Structure)\nStandard layout:\nroles/\n  nginx/\n    tasks/\n    handlers/\n    templates/\n    vars/\nUse in playbook:\nroles:\n  - nginx",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#idempotency",
+    "href": "ansible.html#idempotency",
+    "title": "Ansible",
+    "section": "🔁 Idempotency",
+    "text": "🔁 Idempotency\nIf nginx is already installed:\nstate: present\nIt does nothing.\nSafe to rerun anytime.",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#variables",
+    "href": "ansible.html#variables",
+    "title": "Ansible",
+    "section": "🧩 Variables",
+    "text": "🧩 Variables\nvars:\n  http_port: 80\nOverride with:\n\ninventory\ngroup_vars\nhost_vars\nextra vars",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#privilege-escalation",
+    "href": "ansible.html#privilege-escalation",
+    "title": "Ansible",
+    "section": "🔐 Privilege Escalation",
+    "text": "🔐 Privilege Escalation\nbecome: yes\nbecome_method: sudo",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#dynamic-inventory",
+    "href": "ansible.html#dynamic-inventory",
+    "title": "Ansible",
+    "section": "🌍 Dynamic Inventory",
+    "text": "🌍 Dynamic Inventory\nFor cloud:\nansible-inventory -i aws_ec2.yml --graph\nSupports:\n\nAWS\nAzure\nGCP\nVMware",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#real-world-example",
+    "href": "ansible.html#real-world-example",
+    "title": "Ansible",
+    "section": "🏗 Real-World Example",
+    "text": "🏗 Real-World Example\nProvision + configure:\n- hosts: all\n  become: yes\n\n  tasks:\n    - name: Update apt\n      apt:\n        update_cache: yes\n\n    - name: Install Docker\n      apt:\n        name: docker.io\n        state: present",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#advanced-features",
+    "href": "ansible.html#advanced-features",
+    "title": "Ansible",
+    "section": "🧠 Advanced Features",
+    "text": "🧠 Advanced Features\n\n1️⃣ Templates (Jinja2)\n- name: Configure Nginx\n  template:\n    src: nginx.conf.j2\n    dest: /etc/nginx/nginx.conf\nDynamic config generation.\n\n\n\n2️⃣ Handlers\nTriggered only on change:\nhandlers:\n  - name: Restart nginx\n    service:\n      name: nginx\n      state: restarted\n\n\n\n3️⃣ Loops\n- name: Create users\n  user:\n    name: \"{{ item }}\"\n  loop:\n    - ben\n    - admin\n\n\n\n4️⃣ Conditionals\nwhen: ansible_os_family == \"Debian\"\n\n\n\n5️⃣ Tags\nansible-playbook site.yml --tags nginx",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#ansible-cloud",
+    "href": "ansible.html#ansible-cloud",
+    "title": "Ansible",
+    "section": "☁ Ansible + Cloud",
+    "text": "☁ Ansible + Cloud\nYou can:\n\nCreate EC2 instances\nConfigure them\nDeploy apps\n\nOften used alongside:\nTerraform\nCommon pattern:\n\n\n\nTool\nPurpose\n\n\n\n\nTerraform\nCreate infrastructure\n\n\nAnsible\nConfigure OS + apps",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#ansible-tower-automation-platform",
+    "href": "ansible.html#ansible-tower-automation-platform",
+    "title": "Ansible",
+    "section": "🏢 Ansible Tower / Automation Platform",
+    "text": "🏢 Ansible Tower / Automation Platform\nRed Hat Ansible Automation Platform\nProvides:\n\nWeb UI\nRBAC\nScheduling\nAPI\nCredential storage",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#push-vs-pull",
+    "href": "ansible.html#push-vs-pull",
+    "title": "Ansible",
+    "section": "🔄 Push vs Pull",
+    "text": "🔄 Push vs Pull\n\n\n\nModel\nExample\n\n\n\n\nPush\nAnsible\n\n\nPull\nPuppet, Chef\n\n\n\nPush = you run it. Pull = nodes check in.",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#comparison-with-other-tools",
+    "href": "ansible.html#comparison-with-other-tools",
+    "title": "Ansible",
+    "section": "🛠 Comparison With Other Tools",
+    "text": "🛠 Comparison With Other Tools\n\n\n\nTool\nAgentless\nLanguage\nFocus\n\n\n\n\nAnsible\n✅\nYAML\nConfig mgmt\n\n\nPuppet\n❌\nDSL\nLarge infra\n\n\nChef\n❌\nRuby\nEnterprise\n\n\nSaltStack\nMixed\nYAML\nSpeed\n\n\nTerraform\nN/A\nHCL\nInfra provisioning",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#when-to-use-ansible",
+    "href": "ansible.html#when-to-use-ansible",
+    "title": "Ansible",
+    "section": "🧱 When To Use Ansible",
+    "text": "🧱 When To Use Ansible\nUse it for:\n\nOS configuration\nDeploying Django app\nInstalling Docker\nHardening Linux\nRolling updates\nManaging clusters",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#when-not-to-use-it",
+    "href": "ansible.html#when-not-to-use-it",
+    "title": "Ansible",
+    "section": "🚫 When NOT To Use It",
+    "text": "🚫 When NOT To Use It\nNot ideal for:\n\nCreating thousands of cloud resources (Terraform better)\nHigh-frequency config drift enforcement\nEvent-driven infra (use Kubernetes or cloud-native tools)",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#production-best-practices",
+    "href": "ansible.html#production-best-practices",
+    "title": "Ansible",
+    "section": "🏗 Production Best Practices",
+    "text": "🏗 Production Best Practices\n\nStructure\ninventory/\n  production\n  staging\n\nroles/\n  app/\n  db/\n\nsite.yml\n\n\n\nUse Vault\nEncrypt secrets:\nansible-vault encrypt secrets.yml\n\n\n\nLint & Testing\n\nansible-lint\nmolecule (role testing)\nCI/CD validation",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#example-deploy-django-app",
+    "href": "ansible.html#example-deploy-django-app",
+    "title": "Ansible",
+    "section": "🔥 Example: Deploy Django App",
+    "text": "🔥 Example: Deploy Django App\n\nInstall Python\nInstall Postgres\nClone repo\nSetup venv\nRun migrations\nConfigure Gunicorn\nConfigure Nginx\nSetup systemd\n\nAll via one playbook.",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#ansible-execution-flow",
+    "href": "ansible.html#ansible-execution-flow",
+    "title": "Ansible",
+    "section": "📊 Ansible Execution Flow",
+    "text": "📊 Ansible Execution Flow\nInventory → Playbook → Tasks → Modules → Results",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#scaling-considerations",
+    "href": "ansible.html#scaling-considerations",
+    "title": "Ansible",
+    "section": "🧠 Scaling Considerations",
+    "text": "🧠 Scaling Considerations\nFor large infra:\n\nUse forks\nUse SSH control master\nUse fact caching\nUse Tower for job scheduling",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#future-of-ansible",
+    "href": "ansible.html#future-of-ansible",
+    "title": "Ansible",
+    "section": "🔮 Future of Ansible",
+    "text": "🔮 Future of Ansible\n\nEvent-driven automation\nIntegration with GitOps\nCloud-native modules\nImproved execution speed",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  },
+  {
+    "objectID": "ansible.html#summary",
+    "href": "ansible.html#summary",
+    "title": "Ansible",
+    "section": "🏁 Summary",
+    "text": "🏁 Summary\nAnsible is best for:\n✔ Server configuration ✔ Application deployment ✔ Cloud VM setup ✔ Security automation ✔ CI/CD provisioning\nPair it with Terraform for full infra lifecycle.\n\nIf you’d like, I can next give:\n\n🏗 Ansible for Proxmox homelab\n🚀 Deploy Django + Postgres + Nginx with Ansible\n🔐 Advanced Ansible security patterns\n⚔ Terraform vs Ansible deep comparison\n🧠 Ansible performance tuning guide\n\nTell me what direction you want.",
+    "crumbs": [
+      "Blog",
+      "Ansible"
+    ]
+  }
+]
